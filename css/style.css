@@ -61,7 +61,7 @@ main {
     border: none;
 }
 
-#ingredients {
+#ingredients, #ingredient-searcher {
     background-color: #3282F7;
 }
 
@@ -71,4 +71,16 @@ main {
 
 #ustensils {
     background-color: #ED6454;
+}
+
+.dropdown-menu input {
+    min-width: 10rem;
+    margin: 0px;
+    padding: 0px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-family: 'Lato';
+    font-weight: 500;
+    color: white;
+    display: none;
 }
