@@ -8,4 +8,11 @@ class RecipeDto
         .getAllrecipe();
     }
     
+    getIngredient() {
+
+    }
+
+    hasIngredient() {
+        
+    }
 }

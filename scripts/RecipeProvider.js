@@ -4,25 +4,62 @@ import { recipes } from '../data/recipes.js'
 class RecipeProvider 
 {
     constructor() {
-        this.recettes = recipes
+        this.name = []
+        recipes.forEach((recette) => {
+            this.name.push(recette.name) 
+            return this.name
+        })
+
+        this.id = []
+        recipes.forEach((recette) => {
+            this.id.push(recette.id)
+            return this.id
+        })
+
+        this.servings = []
+        recipes.forEach((recette) => {
+            this.servings.push(recette.servings)
+            return this.servings
+        })
+
+        this.ingredients = []
+        recipes.forEach((recette) => {
+            this.ingredients.push(recette.ingredients)
+            return this.ingredients
+        })
+
+        this.time = []
+        recipes.forEach((recette) => {
+            this.time.push(recette.time)
+            return this.time
+        })
+
+        this.description = []
+        recipes.forEach((recette) => {
+            this.description.push(recette.description)
+            return this.description
+        })
+
+        this.appliance = []
+        recipes.forEach((recette) => {
+            this.appliance.push(recette.appliance)
+            return this.appliance
+        })
+
+        this.ustensils = []
+        recipes.forEach((recette) => {
+            this.ustensils.push(recette.ustensils)
+            return this.ustensils
+        })
+    
     }
+
     // retourne un array avec toutes les recettes
     getAllRecipe() {
-        console.log(this.recettes);
-        return this.recettes
-        
+        return this  
 }
     // retourne un array avec tous les noms de recette
 
-    getRecipeName(){
-        
-        let result = [];
-        
-        recipes.forEach((recette) => {
-            result.push(recette.name)  
-        })
-        return result
-    }
 
     // retourner un array de tableaux d'ingredients
     getRecipeIngredients() {

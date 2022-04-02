@@ -1,20 +1,15 @@
 import { RecipeProvider } from './RecipeProvider.js'
 import { SearchResult } from './SearchResult.js'
-
-let Collection = new RecipeProvider();
-    Collection.getAllRecipe()
-    Collection.getRecipeName()
-    Collection.getRecipeIngredients()
-    Collection.getAllIngredients()
-
-
-let constructPage = new SearchResult()
-constructPage.displayRecettes(Collection.getRecipeName())
-constructPage.displayIngredient(Collection.getAllIngredients())
+import SearchService from './SearchService.js'
 
 
 
+//Je vais chercher mes recettes contenues dans le fichier de data 
+let Collection = new RecipeProvider().getAllRecipe();
 
+//SearchService permet de lancer l'algo de recherche
+const searchService = new SearchService(Collection);
+let recipes = searchService.search()
 
 //si l'utilisateur entre au moins 3 caracteres
 let searchBar = document.querySelector('.search-bar')
