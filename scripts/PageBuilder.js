@@ -4,25 +4,27 @@ class PageBuilder {
 
       
     refresh(recipes) {
-        
-        let tableau = Array.of(recipes.name)
-      
-        tableau.forEach((el) => {
-            el.forEach((titre) => {
-                this.buildCard(titre)
-            })
+        recipes.forEach((el) => {
+            this.buildCard(el)
         });
     }
 
-    buildCard(title) {
+    buildCard(recette) {
         
         const gallery = document.querySelector('.recipes-container')
         const htmlArticle =`
         <article class='recipe-card'>
-        <img src='' alt=''>
+        <div class='img-placeholder'></div>
         <div class='card-description'>
-        <h2>${title}</h2>
+            <div class='card-header'>
+                <h2>${recette.name}</h2> 
+                <div class='time'>${recette.time} min</div>
+            </div>
+            <div class='card-details'>
+                <div class='tuto'>${recette.description}</div>
+            </div>
         </div>
+        
         </article>`;
         const article = document.createElement('div')
         article.innerHTML = htmlArticle

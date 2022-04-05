@@ -103,18 +103,39 @@ main {
 }
 .recipe-card {
     width: 380px;
+    height: 360px;
     background-color: #E7E7E7;
     border-radius: 5px;
+    font-size: 18px;
+
 }
 
-.recipe-card img {
+.img-placeholder {
     height: 178px;
     background-color: #C7BEBE;
     width: 100%;
     border-radius: 5px 5px 0 0 ;
     overflow: hidden;
 }
-
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .card-description {
-    padding: 2rem;
+    padding: 1rem;
+    font-style: normal; 
+}
+
+.card-description h2 {
+    font-weight: 400;
+    font-size: 18px;
+}
+.time {
+    font-weight: 700;
+}
+.tuto {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
