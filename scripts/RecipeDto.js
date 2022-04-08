@@ -19,14 +19,19 @@ class RecipeDto
         recipe.ustensils.forEach((ustensil) => {
             this.blob.add(ustensil)
         })
+
     }
    
-    getIngredient(ingredient) {
+    getIngredient() {
+        console.log('je passe');
+        this.ingredients.forEach((ing) => {
+            console.log(ing);
+        })
         return this.ingredients.include(ingredient)
 
     }
 
-    hasIngredient() {
-        
+    hasIngredient(ingredient) {
+        return this.ingredients.include(ingredient)
     }
 }

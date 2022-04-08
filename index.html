@@ -27,11 +27,17 @@
 
         <div class="tag-container"></div>
         <nav class="dropdown-menu">
-           
-            <button id="ingredients">Ingredients</button>
-            <input id="ingredient-searcher" type="text" placeholder="entrer un ingredient">
-            <button id="appareils">Appareils</button>
-            <button id="ustensils">Ustensiles</button>
+            
+            <button id="ingredients" class="activ">
+                <span>Ingredients</span><img src="./assets/svg/chevron-down-solid.svg" alt="chevron down"></button>
+            <div class="wrapper">
+                <div><input id="ingredient-searcher" type="text" placeholder="entrer un ingredient"><img src="./assets/svg/chevron-down-solid.svg" alt="chevron down"></div>
+                <ul class="results">
+                </ul>
+            </div>
+            
+            <button id="appareils" class="activ">Appareils</button>
+            <button id="ustensils" class="activ">Ustensiles</button>
         </nav>
 
         <div class="recipes-container"></div>

@@ -1,5 +1,5 @@
 //classe qui retourne un resultat de recherche sous forme d'objet
-
+export default
 class SearchResult 
 {
 
