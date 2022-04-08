@@ -1,15 +1,18 @@
-import RecipeDto from "./RecipeDto.js";
-export default class PageBuilder {
-  refresh(recipes) {
-    recipes.forEach((el) => {
-      this.buildCard(el);
-    });
-    this.buildIngredients(recipes);
-  }
+export default 
+class PageBuilder {
 
-  buildCard(recette) {
-    const gallery = document.querySelector(".recipes-container");
-    const htmlArticle = `
+	//fonction pour rafraichir le dom
+	refresh(recipes) {
+		recipes.forEach((el) => {
+			this.buildCard(el);
+		});
+		this.buildIngredients(recipes);
+	}
+
+	//fonction pour construire les cards de recettes
+	buildCard(recette) {
+		const gallery = document.querySelector('.recipes-container');
+		const htmlArticle = `
         <figure class='recipe-card'>
         <img src='' class='img-placeholder' alt=''>
         <figcaption class='card-description'>
@@ -23,32 +26,31 @@ export default class PageBuilder {
         </figcaption>
         
         </figure>`;
-    const article = document.createElement("div");
-    article.innerHTML = htmlArticle;
+		const article = document.createElement('div');
+		article.innerHTML = htmlArticle;
 
-    gallery.appendChild(article);
-  }
+		gallery.appendChild(article);
+	}
 
-  buildIngredients(recette) {
-    //DOM elements
-    const ingredientResult = document.querySelector(".results");
-    const liste = new Set();
-    recette.forEach((el) => {
-      el.ingredients.forEach((ing) => {
-        liste.add(ing.ingredient);
-      });
-    });
-    //   ingredientResult.innerHTML = liste
-    liste.forEach((ing) => {
-      const element = `${ing}`;
-      const ele = document.createElement("li");
-      ele.innerHTML = element;
-      ingredientResult.appendChild(ele);
-    });
-  }
+	//fonction pour construire le contenu des 3 boutons
+	buildIngredients(recette) {
+		//DOM elements
+		const ingredientResult = document.querySelector('.results');
 
-  getTitle() {
-    console.log("ça passe");
-  }
-  getIngredients() {}
+		//crée un nouveau tableau d'ingredients à partir de toutes les recettes dispo dans recipes
+		const liste = new Set();
+		recette.forEach((el) => {
+			el.ingredients.forEach((ing) => {
+				liste.add(ing.ingredient);
+			});
+		});
+
+		//crée un element <li> pour chaque ingredient du tableau
+		liste.forEach((ing) => {
+			const element = `${ing}`;
+			const ele = document.createElement('li');
+			ele.innerHTML = element;
+			ingredientResult.appendChild(ele);
+		});
+	}
 }

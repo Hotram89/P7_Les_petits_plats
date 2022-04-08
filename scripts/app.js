@@ -3,10 +3,7 @@ import SearchResult from './SearchResult.js'
 import SearchService from './SearchService.js'
 import PageEventListener from './PageEventListener.js'
 
-
-
-//Je vais chercher mes recettes contenues dans le fichier de data 
-
+// collection set d'objets RecipeDto
 const collectionDto = new RecipeProvider().findAll()
 
 
@@ -14,6 +11,3 @@ const collectionDto = new RecipeProvider().findAll()
 const searchService = new SearchService(collectionDto);
 let recipes = searchService.search()
 const listene = new PageEventListener().clickListen()
-
-
-
