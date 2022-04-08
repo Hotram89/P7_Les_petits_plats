@@ -44,12 +44,15 @@ main {
     width: 32px;
 }
 
+/****************************************************/
+/****************** DROPDOWN BUTTONS*****************/
+/****************************************************/
 .dropdown-menu {
     margin-top: 1rem;
     display: flex;
     flex-direction: row;
 }
-.dropdown-menu button{
+.dropdown-menu button.activ{
     min-width: 10rem;
     margin: 0px;
     padding: 0px;
@@ -62,9 +65,23 @@ main {
     font-family: 'Lato';
     font-weight: 500;
     color: white;
+    justify-content: space-between;
+    align-items: center;
     border: none;
 }
+.dropdown-menu button {
+    display: none;
+}
 
+input {
+    color: white;
+    border: none;
+
+}
+.dropdown-menu input::placeholder {
+    color: white;
+    opacity: 0.7;
+}
 #ingredients, #ingredient-searcher {
     background-color: #3282F7;
 }
@@ -78,15 +95,68 @@ main {
 }
 
 .dropdown-menu input {
-    min-width: 10rem;
-    margin: 0px;
-    padding: 0px;
-    border-radius: 5px;
+    height: ;
+}
+
+#ingredient-searcher {
+    display: flex;
     font-size: 18px;
+    height: 2rem;
+}
+
+#ingredients img {
+    width: 1rem;
+    filter: invert(93%) sepia(100%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(106%);
+}
+.wrapper img {
+    width: 1.2rem;
+    filter: invert(93%) sepia(100%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(106%);
+    transform: rotate(180deg);
+    margin-right: 1rem;
+}
+.wrapper div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
     font-family: 'Lato';
     font-weight: 500;
     color: white;
-    display: none;
+    border-radius: 5px;
+    background-color: #3282F7;
+    padding: 0rem;
+    height: 0px;
+    width: 0px;
+    overflow: hidden;
+    transition: height 0.5s ease-in-out;
+}
+.wrapper.activ {
+    display: flex;
+    height: 397px;
+    width: 670px;
+    padding: 1rem;
+    margin-right: 1.5rem;
+}
+
+ul {
+    list-style: none;
+    font-family: 'Lato';
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    column-gap: 4rem;
+    padding: 0;
+    margin-top: 2rem;
+    height: 100%;
+
+}
+li {
+    margin-bottom: 0.7rem;
+    font-size: 18px;
+    min-width: 180px;
 }
 
 /****************************************************/
@@ -103,18 +173,39 @@ main {
 }
 .recipe-card {
     width: 380px;
+    height: 360px;
     background-color: #E7E7E7;
     border-radius: 5px;
+    font-size: 18px;
+
 }
 
-.recipe-card img {
+.img-placeholder {
     height: 178px;
     background-color: #C7BEBE;
     width: 100%;
     border-radius: 5px 5px 0 0 ;
     overflow: hidden;
 }
-
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .card-description {
-    padding: 2rem;
+    padding: 1rem;
+    font-style: normal; 
+}
+
+.card-description h2 {
+    font-weight: 400;
+    font-size: 18px;
+}
+.time {
+    font-weight: 700;
+}
+.tuto {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }

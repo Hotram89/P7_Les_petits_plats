@@ -4,10 +4,10 @@ import PageBuilder from "./PageBuilder.js";
 export default 
 class SearchService {
 
-    constructor(collection) {
+    constructor(collectionDto) {
         this.domBuilder = new PageBuilder()
-        this.recipes = collection
-        this.recipedFiltered = collection
+        this.recipes = collectionDto /// les 50 recettes
+        this.recipedFiltered = collectionDto ///les XX recettes filtrées
 
     }
 
@@ -16,6 +16,7 @@ class SearchService {
         // 2 - elle filtre selon les filtres
         // 3 - reconstruit le html
         this.domBuilder.refresh(this.recipedFiltered)
+        
     }
 
 }
