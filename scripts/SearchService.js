@@ -1,21 +1,22 @@
 import PageBuilder from "./PageBuilder.js";
+import SearchResult from "./SearchResult.js";
 
+/*
+    Cette class sert à proposer des services avec la recherche, comme par exemple, constuire le dom
+
+    */
 
 export default 
 class SearchService {
 
     constructor(collectionDto) {
         this.domBuilder = new PageBuilder()
-        this.recipes = collectionDto /// les 50 recettes
-        this.recipedFiltered = collectionDto ///les XX recettes filtrées
+        this.recipedFiltered = collectionDto 
 
     }
 
     search() {
-        //1- checker les filtres
-        // 2 - elle filtre selon les filtres
-        // 3 - reconstruit le html
-        this.domBuilder.refresh(this.recipedFiltered)
+        this.domBuilder.refresh(new SearchResult(this.recipedFiltered))
         
     }
 

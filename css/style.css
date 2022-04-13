@@ -53,7 +53,8 @@ main {
     flex-direction: row;
 }
 .dropdown-menu button.activ{
-    min-width: 10rem;
+    min-width: 12rem;
+    height: 4rem;
     margin: 0px;
     padding: 0px;
     background-color: yellow;
@@ -131,7 +132,7 @@ input {
     height: 0px;
     width: 0px;
     overflow: hidden;
-    transition: height 0.5s ease-in-out;
+    transition: height 0.3s ease-in-out;
 }
 .wrapper.activ {
     display: flex;
@@ -186,6 +187,7 @@ li {
     width: 100%;
     border-radius: 5px 5px 0 0 ;
     overflow: hidden;
+    object-fit: cover;
 }
 .card-header {
     display: flex;

@@ -1,6 +1,9 @@
 //class qui ecoute l'utilisateur sur la page
 
 export default class PageEventListener {
+    constructor(searchService) {
+        this.searchService
+    }
   clickListen() {
     //DOM element
     const body = document.querySelector("body");

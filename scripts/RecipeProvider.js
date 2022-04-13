@@ -15,4 +15,4 @@ export default class RecipeProvider {
 		return this.data;
 	}
 }
-export { RecipeProvider };
+

@@ -8,23 +8,33 @@ class SearchResult
 		this.appareils = new Set()
 		this.recipes = recipes
 
-		recipes.appareils.forEach(recipe => {
-			if (recipe.hasIngredients()) {
-				this.ingredient.add(ingredient.getIngredients());
-			}
-		});
+        
+		// recipes.forEach(recipeDto => {
+        //     let listeCourses = recipeDto.ingredients
+       
+		// 	if (listeCourses.hasIngredients()) {
+		// 		this.ingredient.add(ingredient.getIngredients());
+		// 	}
+		// });
 
-		recipes.ustensiles.forEach(recipe => {
-			if (recipe.hasIngredients()) {
-				this.ingredient.add(ingredient.getIngredients())
-			}
-		});
+		recipes.forEach(recipe => {
+            this.appareils.add(recipe.appliance)
 
-		recipes.ingredient.forEach( recipe => {
-			if (recipe.hasIngredients()) {
-				this.ingredient.add(ingredient.getIngredients())
-			}
-		})
+                recipe.blob.forEach((ustensil) => {  
+                    this.ustensiles.add(ustensil)
+                })
+
+                recipe.ingredients.forEach(ingredient => {
+                    this.ingredient.add(ingredient)
+                })
+           
+		});
+       
+		// recipes.ingredient.forEach( recipe => {
+		// 	if (recipe.hasIngredients()) {
+		// 		this.ingredient.add(ingredient.getIngredients())
+		// 	}
+		// })
 	}
   
 }
