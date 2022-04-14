@@ -7,6 +7,8 @@ class PageBuilder {
 			this.buildCard(el);
 		});
 		this.buildIngredients(recipes);
+        this.buildUstencils(recipes)
+        this.buildAppareils(recipes)
 	}
 
 	//fonction pour construire les cards de recettes
@@ -38,7 +40,7 @@ class PageBuilder {
 	//fonction pour construire le contenu des 3 boutons
 	buildIngredients(recette) {
 		//DOM elements
-		const ingredientResult = document.querySelector('.results');
+		const ingredientResult = document.querySelector('.firstBtn');
 
 		//crée un nouveau tableau d'ingredients à partir de toutes les recettes dispo dans recipes
 		const liste = recette.ingredient
@@ -51,4 +53,36 @@ class PageBuilder {
 			ingredientResult.appendChild(ele);
 		});
 	}
+
+    buildUstencils(recette) {
+        //DOM Elements
+        const ustencilResult = document.querySelector('.thirdBtn')
+
+        //crée un nouveau tableau d'ustensiles à partir de toutes les recettes dispo dans recipes
+		const liste = recette.ustensiles
+
+        liste.forEach( ustencil => {
+            const element = `${ustencil}`
+            const ele = document.createElement('li')
+            ele.innerHTML = element
+            ustencilResult.appendChild(ele)
+        })
+
+    }
+
+    buildAppareils(recette) {
+        //DOM elements
+        const appareilResult = document.querySelector('.secondBtn')
+        console.log(appareilResult);
+
+        //crée un nouveau tableau d'appareils a partir de recipes
+        const liste = recette.appareils
+        
+        liste.forEach( appareil => {
+            const element = `${appareil}`
+            const ele = document.createElement('li')
+            ele.innerHTML = element
+            appareilResult.appendChild(ele)
+        })
+    }
 }

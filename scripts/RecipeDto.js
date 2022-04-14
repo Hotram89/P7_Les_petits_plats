@@ -23,8 +23,11 @@ class RecipeDto
 		})
 
 	}
-   
+
+   //permet de savoir si il contient l'ingredient
 	hasIngredient(ingredient) {
 		return this.ingredients.include(ingredient)
 	}
+
+    //
 }

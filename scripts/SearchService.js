@@ -1,22 +1,34 @@
 import PageBuilder from "./PageBuilder.js";
 import SearchResult from "./SearchResult.js";
 
-/*
-    Cette class sert à proposer des services avec la recherche, comme par exemple, constuire le dom
-
-    */
+/***
+ *  Cette class sert à faire une recherche initiale et la rafraichir en fonction des filtres
+*/
 
 export default 
 class SearchService {
+    /**
+     * 
+     * COntient les données des recettes non filtrées
+     */ 
+    recipes;
+
+    /**
+     * 
+     * Contient les données de recettes deja filtrées en fonction de la recherche courante
+     */
+    recipesFiltered
 
     constructor(collectionDto) {
         this.domBuilder = new PageBuilder()
-        this.recipedFiltered = collectionDto 
+        this.recipes = collectionDto // ne change pas, a les 50 recettes
+        this.recipesFiltered = collectionDto // change en fonction des recherches effectuées
 
     }
 
     search() {
-        this.domBuilder.refresh(new SearchResult(this.recipedFiltered))
+        // permet de récupérer dans un objet la saisie dans l'input text et les tags sélectionnés
+        this.domBuilder.refresh(new SearchResult(this.recipesFiltered))
         
     }
 

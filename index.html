@@ -25,19 +25,36 @@
             <div class="search-icon"><img src="./assets/magnifying-glass-solid.png" alt="icon loupe"></div>
         </div>
 
-        <div class="tag-container"></div>
+        <div id="tag-container"></div>
         <nav class="dropdown-menu">
             
             <button id="ingredients" class="activ">
                 <span>Ingredients</span><img src="./assets/svg/chevron-down-solid.svg" alt="chevron down"></button>
             <div class="wrapper">
                 <div><input id="ingredient-searcher" type="text" placeholder="entrer un ingredient"><img src="./assets/svg/chevron-down-solid.svg" alt="chevron down"></div>
-                <ul class="results">
+                <ul class="results firstBtn">
                 </ul>
             </div>
             
-            <button id="appareils" class="activ">Appareils</button>
-            <button id="ustensils" class="activ">Ustensiles</button>
+            <button id="appareils" class="activ">
+                <span>Appareils</span>
+                <img src="./assets/svg/chevron-down-solid.svg" alt="chevron down">
+                </button>
+                <div class="wrapper">
+                    <div><input id="appareil-searcher" type="text" placeholder="entrer un appareil"><img src="./assets/svg/chevron-down-solid.svg" alt="chevron down"></div>
+                    <ul class="results secondBtn">
+                    </ul>
+                </div>
+
+            <button id="ustensils" class="activ">
+                <span>Ustensiles</span>
+                <img src="./assets/svg/chevron-down-solid.svg" alt="chevron down">
+                </button>
+                <div class="wrapper">
+                    <div><input id="ustensil-searcher" type="text" placeholder="entrer un ustensile"><img src="./assets/svg/chevron-down-solid.svg" alt="chevron down"></div>
+                    <ul class="results thirdBtn">
+                    </ul>
+                </div>
         </nav>
 
         <div class="recipes-container"></div>

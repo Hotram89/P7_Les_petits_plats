@@ -6,6 +6,7 @@ export default class RecipeProvider {
 	constructor() {
 		this.data = new Set();
 		recipes.forEach((recipe) => {
+            //ne peux pas intégrer deux recettes identiques
 			this.data.add(new RecipeDto(recipe));
 		});
 	}
