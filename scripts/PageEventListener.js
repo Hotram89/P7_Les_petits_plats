@@ -54,10 +54,12 @@ export default class PageEventListener {
       //ajouter un tag
       //dom element
       const tagContainer = document.getElementById('tag-container')
-      console.log(tagContainer);
-
-      if (e.target === ustensilWrapper) {
-          console.log('coucou');
+     
+      if (e.target.localName === 'li') {
+          const ele = document.createElement('li')
+          tagContainer.appendChild(ele)
+          ele.innerHTML = e.target.innerHTML
+          ele.classList.add('tag')
       }
 
     });
