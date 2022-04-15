@@ -58,7 +58,7 @@ export default class PageEventListener {
       const ustensilList = document.querySelector('.thirdBtn')
       const appareilsList = document.querySelector('.secondBtn')
 
-      if (e.target.localName === "li") {
+      if (e.target.classList.contains('list-item')) {
         const ele = document.createElement("li");
         const cross = document.createElement("div");
 
@@ -84,17 +84,16 @@ export default class PageEventListener {
         ele.innerHTML = e.target.innerHTML;
         ele.classList.add("tag");
 
-        cross.innerHTML = `<img src='./assets/svg/close.svg' alt='close button'>`;
+        cross.innerHTML = `<img src='./assets/svg/close.svg' class='remove-tag' alt='close button'>`;
         cross.classList.add("cross");
         ele.appendChild(cross);
         e.target.remove();
       }
     
       //fermer un tag
-      const closeBtn = document.querySelector('.cross img')
-      console.log(e.target);
-      if (e.target === closeBtn) {
-          e.target.parentNode.parentNode.remove()
+      
+      if (e.target.classList.contains('remove-tag')) {
+          e.target.closest('.tag').remove()
       }
       
     });

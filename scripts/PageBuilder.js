@@ -51,6 +51,7 @@ class PageBuilder {
 			const ele = document.createElement('li');
 			ele.innerHTML = element;
 			ingredientResult.appendChild(ele);
+            ele.classList.add('list-item')
 		});
 	}
 
@@ -66,6 +67,7 @@ class PageBuilder {
             const ele = document.createElement('li')
             ele.innerHTML = element
             ustencilResult.appendChild(ele)
+            ele.classList.add('list-item')
         })
 
     }
@@ -82,6 +84,7 @@ class PageBuilder {
             const ele = document.createElement('li')
             ele.innerHTML = element
             appareilResult.appendChild(ele)
+            ele.classList.add('list-item')
         })
     }
 }

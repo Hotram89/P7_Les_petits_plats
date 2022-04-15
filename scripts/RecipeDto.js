@@ -9,17 +9,17 @@ class RecipeDto
 		this.name = recipe.name
 		this.servings = recipe.servings
 		this.ingredients = new Set()
-        this.ingredientsText = new Set()
+        this.ingredientsData = new Set()
 		recipe.ingredients.forEach((ingredient) => {
 			this.ingredients.add(ingredient.ingredient)
-            this.ingredientsText.add(ingredient)
+            this.ingredientsData.add(ingredient)
 		})
 		this.description = recipe.description
 		this.appliance = recipe.appliance
-		this.ustensils = recipe.ustensils
-		this.blob = new Set()
+		//this.ustensils = recipe.ustensils
+		this.ustensils = new Set()
 		recipe.ustensils.forEach((ustensil) => {
-			this.blob.add(ustensil)
+			this.ustensils.add(ustensil)
 		})
 
 	}
@@ -28,6 +28,4 @@ class RecipeDto
 	hasIngredient(ingredient) {
 		return this.ingredients.include(ingredient)
 	}
-
-    //
 }
