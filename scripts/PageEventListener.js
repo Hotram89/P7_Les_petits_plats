@@ -54,14 +54,49 @@ export default class PageEventListener {
       //ajouter un tag
       //dom element
       const tagContainer = document.getElementById('tag-container')
-     
-      if (e.target.localName === 'li') {
-          const ele = document.createElement('li')
-          tagContainer.appendChild(ele)
-          ele.innerHTML = e.target.innerHTML
-          ele.classList.add('tag')
-      }
+      const ingredientsList = document.querySelector('.firstBtn')
+      const ustensilList = document.querySelector('.thirdBtn')
+      const appareilsList = document.querySelector('.secondBtn')
 
+      if (e.target.localName === "li") {
+        const ele = document.createElement("li");
+        const cross = document.createElement("div");
+
+        tagContainer.appendChild(ele);
+
+        if (         e.target.localName === "li" &&  e.target.parentNode === ustensilList ) {
+          ele.classList.add("redTag");
+        }
+        if (
+          e.target.localName === "li" &&
+          e.target.parentNode === appareilsList
+        ) {
+          ele.classList.add("greenTag");
+        }
+
+        if (
+          e.target.localName === "li" &&
+          e.target.parentNode === ingredientsList
+        ) {
+          ele.classList.add("blueTag");
+        }
+
+        ele.innerHTML = e.target.innerHTML;
+        ele.classList.add("tag");
+
+        cross.innerHTML = `<img src='./assets/svg/close.svg' alt='close button'>`;
+        cross.classList.add("cross");
+        ele.appendChild(cross);
+        e.target.remove();
+      }
+    
+      //fermer un tag
+      const closeBtn = document.querySelector('.cross img')
+      console.log(e.target);
+      if (e.target === closeBtn) {
+          e.target.parentNode.parentNode.remove()
+      }
+      
     });
   }
 }

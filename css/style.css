@@ -169,7 +169,7 @@ ul {
     margin-top: 1rem;
     height: 100%;
 }
-li {
+.dropdown-menu li {
     margin-bottom: 0.7rem;
     font-size: 18px;
     min-width: 180px;
@@ -234,15 +234,39 @@ li {
 
 .tag {
     list-style: none;
-    background-color: #ED6454;
-  
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #C7BEBE;
     padding: 1rem;
+    gap: 1rem;
     border-radius: 5px;
     margin-right: 1rem;
     color: white;
 }
+.redTag {
+    background-color: #ED6454;
+}
 
+.greenTag {
+    background-color: #68D9A4;
+}
+
+.blueTag {
+    background-color: #3282F7;
+}
 #tag-container{
     display: flex;
+    margin-top: 1rem;
    
 }
+.cross img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ width: 0.7rem;
+ border: solid 2px white;
+ border-radius: 25px;
+ padding: 0.2rem;
+}
+

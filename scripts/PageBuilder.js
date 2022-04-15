@@ -73,7 +73,6 @@ class PageBuilder {
     buildAppareils(recette) {
         //DOM elements
         const appareilResult = document.querySelector('.secondBtn')
-        console.log(appareilResult);
 
         //crée un nouveau tableau d'appareils a partir de recipes
         const liste = recette.appareils
