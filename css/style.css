@@ -211,20 +211,45 @@ ul {
     align-items: center;
 }
 .card-description {
-    padding: 1rem;
+    padding: 0 1rem;
     font-style: normal; 
 }
 
 .card-description h2 {
     font-weight: 400;
     font-size: 18px;
+    height: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 70%;
+}
+.list-ingredients{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+.card-details{
+    display: flex;
+    gap: 2rem;
+   font-size: 12px;
+    list-style: none;
+    height: 105px;
+    overflow: hidden;
 }
 .time {
     font-weight: 700;
 }
 .tuto {
     text-overflow: ellipsis;
-    white-space: nowrap;
+    height: 100%;
+    width: 170px;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
     overflow: hidden;
 }
 

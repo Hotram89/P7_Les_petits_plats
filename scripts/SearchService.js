@@ -1,4 +1,6 @@
-import PageBuilder from "./PageBuilder.js";
+import CardBuilder from "./CardBuilder.js";
+import ListBuilder from "./ListBuilder.js";
+import PageBuilder from "./ListBuilder.js";
 import SearchResult from "./SearchResult.js";
 
 /***
@@ -20,7 +22,8 @@ class SearchService {
     recipesFiltered
 
     constructor(collectionDto) {
-        this.domBuilder = new PageBuilder()
+        this.domBuilder = new CardBuilder()
+        this.listBuilder = new ListBuilder()
         this.recipes = collectionDto // ne change pas, a les 50 recettes
         this.recipesFiltered = collectionDto // change en fonction des recherches effectuées
 
@@ -29,6 +32,7 @@ class SearchService {
     search() {
         // permet de récupérer dans un objet la saisie dans l'input text et les tags sélectionnés
         this.domBuilder.refresh(new SearchResult(this.recipesFiltered))
+        this.listBuilder.refresh(new SearchResult(this.recipesFiltered))
         
     }
 
