@@ -7,6 +7,21 @@ export default class PageEventListener {
   clickListen() {
     //DOM element
     const body = document.querySelector("body");
+
+    body.addEventListener("click", (e) => {
+    //verifie si il est valide
+    this.isValid(e.target)
+    //deplier la liste
+    this.unwrapList(e.target)
+    //ajouter un tag
+    this.buildTag(e.target)
+    //fermer un tag
+    this.removeTag(e.target)
+    });
+  }
+
+  isValid(element) {
+    //DOM elements
     const ingredients = document.getElementById("ingredients");
     const ingredientWrapper = document.querySelector("#ingredients+.wrapper");
     const appareils = document.getElementById('appareils')
@@ -14,88 +29,98 @@ export default class PageEventListener {
     const ustensil = document.getElementById('ustensils')
     const ustensilWrapper = document.querySelector('#ustensils+.wrapper')
 
-    body.addEventListener("click", (e) => {
-      // verifie si on a cliquer sur Ingredients
-      if (e.target === ingredients || e.target.parentNode === ingredients) {
+    // verifie si on a cliquer sur Ingredients
+    if (element === ingredients || element.parentNode === ingredients) {
         ingredientWrapper.classList.toggle("activ");
         ingredients.classList.remove("activ");
       }
 
       //verifie si on a cliqué sur Appareils
-      if (e.target === appareils || e.target.parentNode === appareils) {
+      if (element === appareils || element.parentNode === appareils) {
           appareilWrapper.classList.add('activ')
           appareils.classList.remove('activ')
       }
 
       //verifie si on a cliqué sur Ustensils
-      if (e.target === ustensil || e.target.parentNode === ustensil) {
+      if (element === ustensil || element.parentNode === ustensil) {
+        ustensilWrapper.classList.toggle('activ')
+        ustensil.classList.toggle('activ')
+    }  
+  }
+
+  unwrapList(element) {
+    // verifie si on a cliquer sur le chevron pour fermer Ingredients
+    const closeIngredients = document.querySelector("#ingredients+.wrapper img");
+    const ingredients = document.getElementById("ingredients");
+    const ingredientWrapper = document.querySelector("#ingredients+.wrapper");
+    const appareils = document.getElementById('appareils')
+    const appareilWrapper = document.querySelector('#appareils+.wrapper')
+    const ustensil = document.getElementById('ustensils')
+    const ustensilWrapper = document.querySelector('#ustensils+.wrapper')
+
+
+      
+    if (element === closeIngredients) {
+      ingredientWrapper.classList.toggle("activ");
+      ingredients.classList.toggle("activ");
+    }
+
+    if (element === document.querySelector('#appareils+.wrapper img')) {
+        appareilWrapper.classList.toggle('activ')
+        appareils.classList.toggle('activ')
+    }
+
+    if (element === document.querySelector('#ustensils+.wrapper img')) {
         ustensilWrapper.classList.toggle('activ')
         ustensil.classList.toggle('activ')
     }
+  }
 
-      // verifie si on a cliquer sur le chevron pour fermer Ingredients
-      const closeIngredients = document.querySelector("#ingredients+.wrapper img");
-      
-      if (e.target === closeIngredients) {
-        ingredientWrapper.classList.toggle("activ");
-        ingredients.classList.toggle("activ");
-      }
+  removeTag(element) {
+        if (element.classList.contains('remove-tag')){
+           element.closest('.tag').remove()
+        }
+  }
 
-      if (e.target === document.querySelector('#appareils+.wrapper img')) {
-          appareilWrapper.classList.toggle('activ')
-          appareils.classList.toggle('activ')
-      }
+  buildTag(element) {
+       //dom element
+       const tagContainer = document.getElementById('tag-container')
+       const ingredientsList = document.querySelector('.firstBtn')
+       const ustensilList = document.querySelector('.thirdBtn')
+       const appareilsList = document.querySelector('.secondBtn')
 
-      if (e.target === document.querySelector('#ustensils+.wrapper img')) {
-          ustensilWrapper.classList.toggle('activ')
-          ustensil.classList.toggle('activ')
-      }
-
-      //ajouter un tag
-      //dom element
-      const tagContainer = document.getElementById('tag-container')
-      const ingredientsList = document.querySelector('.firstBtn')
-      const ustensilList = document.querySelector('.thirdBtn')
-      const appareilsList = document.querySelector('.secondBtn')
-
-      if (e.target.classList.contains('list-item')) {
+       //construit le tag
+       if (element.classList.contains('list-item')) {
         const ele = document.createElement("li");
         const cross = document.createElement("div");
-
         tagContainer.appendChild(ele);
 
-        if (         e.target.localName === "li" &&  e.target.parentNode === ustensilList ) {
+        // colore les tag
+        if ( element.classList.contains('list-item') &&  
+        element.parentNode === ustensilList ) {
           ele.classList.add("redTag");
         }
         if (
-          e.target.localName === "li" &&
-          e.target.parentNode === appareilsList
+            element.classList.contains('list-item') &&
+          element.parentNode === appareilsList
         ) {
           ele.classList.add("greenTag");
         }
 
         if (
-          e.target.localName === "li" &&
-          e.target.parentNode === ingredientsList
+            element.classList.contains('list-item') &&
+          element.parentNode === ingredientsList
         ) {
           ele.classList.add("blueTag");
         }
 
-        ele.innerHTML = e.target.innerHTML;
+        ele.innerHTML = element.innerHTML;
         ele.classList.add("tag");
 
         cross.innerHTML = `<img src='./assets/svg/close.svg' class='remove-tag' alt='close button'>`;
         cross.classList.add("cross");
         ele.appendChild(cross);
-        e.target.remove();
+       
       }
-    
-      //fermer un tag
-      
-      if (e.target.classList.contains('remove-tag')) {
-          e.target.closest('.tag').remove()
-      }
-      
-    });
   }
 }

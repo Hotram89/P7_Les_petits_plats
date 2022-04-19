@@ -76,7 +76,7 @@ main {
     display: none;
 }
 
-input {
+.wrapper input {
     color: white;
     border: none;
 
@@ -112,7 +112,9 @@ input {
     filter: invert(93%) sepia(100%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(106%);
 }
 
-
+.list-item {
+    cursor: pointer;
+}
 .wrapper img {
     width: 1.2rem;
     filter: invert(93%) sepia(100%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(106%);
@@ -293,5 +295,6 @@ ul {
  border: solid 2px white;
  border-radius: 25px;
  padding: 0.2rem;
+ cursor: pointer;
 }
 

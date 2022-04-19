@@ -39,11 +39,21 @@ class CardBuilder {
     buildIngredientsData(recette) {
        let list =  []
         recette.ingredientsData.forEach((ingredient) => {
+            if ((ingredient.quantity != undefined) && (ingredient.unit != undefined)){
+                let item = `<li><strong>${ingredient.ingredient}:</strong> ${ingredient.quantity} ${ingredient.unit}</li>`
+                list.push(item)
+            }
 
-             let item = `<li><strong>${ingredient.ingredient}:</strong> ${ingredient.quantity} ${ingredient.unit} `
+            else if (ingredient.quantity != undefined) {
+                let item = `<li><strong>${ingredient.ingredient}:</strong> ${ingredient.quantity}</li>`
+                list.push(item)
+
+            } else {
+                let item = `<li><strong>${ingredient.ingredient}:</strong></li>`
              list.push(item)
+            }   
         })
-
+        list = list.join('')
        return list
     }
 
