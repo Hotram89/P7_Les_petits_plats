@@ -10,7 +10,7 @@ export default class PageEventListener {
 
     body.addEventListener("click", (e) => {
     //verifie si il est valide
-    this.isValid(e.target)
+    this.openTagList(e.target)
     //deplier la liste
     this.unwrapList(e.target)
     //ajouter un tag
@@ -20,7 +20,7 @@ export default class PageEventListener {
     });
   }
 
-  isValid(element) {
+  openTagList(element) {
     //DOM elements
     const ingredients = document.getElementById("ingredients");
     const ingredientWrapper = document.querySelector("#ingredients+.wrapper");
@@ -122,5 +122,16 @@ export default class PageEventListener {
         ele.appendChild(cross);
        
       }
+  }
+
+
+  inputListen() {
+      let userWord = document.querySelector('.search-bar')
+
+    userWord.addEventListener('keyup', (e)=> {    
+        console.log(document.querySelector('.search-bar').value);
+
+    }); 
+    return userWord.value;
   }
 }

@@ -3,6 +3,7 @@ export default
 class SearchResult 
 {
 	constructor(recipes) {
+        this.input = this.getInputValuesEscaped();
 		this.ingredient = new Set();
 		this.ustensiles = new Set();
 		this.appareils = new Set()
@@ -20,4 +21,10 @@ class SearchResult
                 })
 		});
 	}
+
+    getInputValuesEscaped() {
+        //lait de coco
+        // [ lait , de , coco]
+        return 'coco'
+    }
 }

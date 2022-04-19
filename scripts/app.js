@@ -2,6 +2,7 @@ import RecipeProvider from './RecipeProvider.js'
 import SearchResult from './SearchResult.js'
 import SearchService from './SearchService.js'
 import PageEventListener from './PageEventListener.js'
+import SearchParam from './SearchParam.js'
 
 // collection set d'objets RecipeDto
 const RecipesDto = new RecipeProvider().findAll()
@@ -12,3 +13,6 @@ const searchService = new SearchService(RecipesDto);
 
 let recipes = searchService.search()
 const listene = new PageEventListener().clickListen()
+
+const keyboardResult = new PageEventListener().inputListen()
+

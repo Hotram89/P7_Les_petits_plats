@@ -2,16 +2,19 @@
 export default
 class SearchParam
 {
-    constructor(recipes) {
-        this.input = this.getInputValuesEscaped();
+    constructor() {
+      
         this.ustensiles = new Set()
         this.appareil = new Set()
-        this.recipes = recipes
     }
 
-    getInputValuesEscaped() {
-        //lait de coco
-        // [ lait , de , coco]
-        return 'coco'
+
+    isValid(resultat) {
+        
+        if( resultat.length > 3) {
+            console.log(resultat);
+        }
+        return resultat
     }
+ 
 }

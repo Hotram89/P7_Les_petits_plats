@@ -110,6 +110,7 @@ main {
 #ingredients img, #appareils img, #ustensils img {
     width: 1rem;
     filter: invert(93%) sepia(100%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(106%);
+   
 }
 
 .list-item {
@@ -120,6 +121,7 @@ main {
     filter: invert(93%) sepia(100%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(106%);
     transform: rotate(180deg);
     margin-right: 1rem;
+    cursor: pointer;
 }
 .wrapper div {
     display: flex;

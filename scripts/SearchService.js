@@ -1,6 +1,7 @@
 import CardBuilder from "./CardBuilder.js";
 import ListBuilder from "./ListBuilder.js";
 import PageBuilder from "./ListBuilder.js";
+import SearchParam from "./SearchParam.js";
 import SearchResult from "./SearchResult.js";
 
 /***
@@ -30,6 +31,8 @@ class SearchService {
     }
 
     search() {
+
+        let searchParams = new SearchParam()
         // permet de récupérer dans un objet la saisie dans l'input text et les tags sélectionnés
         this.domBuilder.refresh(new SearchResult(this.recipesFiltered))
         this.listBuilder.refresh(new SearchResult(this.recipesFiltered))
