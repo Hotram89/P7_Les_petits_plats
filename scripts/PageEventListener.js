@@ -124,6 +124,7 @@ export default class PageEventListener {
 			cross.innerHTML = '<img src=\'./assets/svg/close.svg\' class=\'remove-tag\' alt=\'close button\'>';
 			cross.classList.add('cross');
 			ele.appendChild(cross);
+			element.remove();
 		}
 	}
 
@@ -134,5 +135,12 @@ export default class PageEventListener {
 			new SearchParams().refresh(userWord.value);
 		});
 		return userWord.value;
+	}
+
+	SelectedTagList() {
+
+		let selectedTags = document.querySelectorAll('.tag')
+		console.log(selectedTags);
+
 	}
 }
