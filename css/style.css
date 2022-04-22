@@ -245,6 +245,9 @@ ul {
 }
 .time {
     font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .tuto {
     text-overflow: ellipsis;
@@ -255,6 +258,12 @@ ul {
     -webkit-line-clamp: 7;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+.time img {
+    width: 1.5rem;
+    height: 2rem;
+    margin-right: 0.5rem;
 }
 
 /****************************************************/

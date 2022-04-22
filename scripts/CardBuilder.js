@@ -20,7 +20,7 @@ class CardBuilder {
         <figcaption class='card-description'>
             <div class='card-header'>
                 <h2>${recette.name}</h2> 
-                <div class='time'>${recette.time} min</div>
+                <div class='time'><img src='./assets/svg/clock-regular.svg'> ${recette.time} min</div>
             </div>
             <div class='card-details'>
                 <ul class='list-ingredients'>${this.buildIngredientsData(recette)}</ul>
