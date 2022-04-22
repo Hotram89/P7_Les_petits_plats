@@ -5,7 +5,7 @@ class CardBuilder {
 	refresh(recipes) {
 		recipes.recipes.forEach((el) => {
 			this.buildCard(el);
-            this.buildIngredientsData(el)
+			this.buildIngredientsData(el);
 		});
         
 	}
@@ -13,7 +13,6 @@ class CardBuilder {
 	//fonction pour construire les cards de recettes
 	buildCard(recette) {
 
-        const ingredients = recette.ingredientsText
 		const gallery = document.querySelector('.recipes-container');
 		const htmlArticle = `
         <figure class='recipe-card'>
@@ -36,26 +35,26 @@ class CardBuilder {
 		gallery.appendChild(article);
 	}
 
-    buildIngredientsData(recette) {
-       let list =  []
-        recette.ingredientsData.forEach((ingredient) => {
-            if ((ingredient.quantity != undefined) && (ingredient.unit != undefined)){
-                let item = `<li><strong>${ingredient.ingredient}:</strong> ${ingredient.quantity} ${ingredient.unit}</li>`
-                list.push(item)
-            }
+	buildIngredientsData(recette) {
+		let list =  [];
+		recette.ingredientsData.forEach((ingredient) => {
+			if ((ingredient.quantity != undefined) && (ingredient.unit != undefined)){
+				let item = `<li><strong>${ingredient.ingredient}:</strong> ${ingredient.quantity} ${ingredient.unit}</li>`;
+				list.push(item);
+			}
 
-            else if (ingredient.quantity != undefined) {
-                let item = `<li><strong>${ingredient.ingredient}:</strong> ${ingredient.quantity}</li>`
-                list.push(item)
+			else if (ingredient.quantity != undefined) {
+				let item = `<li><strong>${ingredient.ingredient}:</strong> ${ingredient.quantity}</li>`;
+				list.push(item);
 
-            } else {
-                let item = `<li><strong>${ingredient.ingredient}:</strong></li>`
-             list.push(item)
-            }   
-        })
-        list = list.join('')
-       return list
-    }
+			} else {
+				let item = `<li><strong>${ingredient.ingredient}:</strong></li>`;
+				list.push(item);
+			}   
+		});
+		list = list.join('');
+		return list;
+	}
 
 	
 }
