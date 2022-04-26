@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,12 +8,14 @@
     <title>Les petits plats</title>
     <link rel="icon" type="image/png" href="./assets/logo/Vector.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&family=Raleway:wght@100;300&display=swap" rel="stylesheet">
-    <link href="./css/style.css" rel="stylesheet" type="text/css"/>
-    
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&family=Raleway:wght@100;300&display=swap"
+        rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet" type="text/css" />
+
 
 </head>
+
 <body>
 
     <header>
@@ -27,34 +30,42 @@
 
         <div id="tag-container"></div>
         <nav class="dropdown-menu">
-            
-            <button id="ingredients" class="activ">
-                <span>Ingredients</span><img src="./assets/svg/chevron-down-solid.svg" alt="chevron down"></button>
-            <div class="wrapper">
-                <div><input id="ingredient-searcher" type="text" placeholder="entrer un ingredient"><img src="./assets/svg/chevron-down-solid.svg" alt="chevron down"></div>
-                <ul class="results firstBtn">
-                </ul>
-            </div>
-            
-            <button id="appareils" class="activ">
-                <span>Appareils</span>
-                <img src="./assets/svg/chevron-down-solid.svg" alt="chevron down">
+            <section class="toggleList">
+                <button id="ingredients" class="toggleList">
+                    <span>Ingredients</span><img src="./assets/svg/chevron-down-solid.svg" alt="chevron down"></button>
+                <div class="wrapper">
+                    <div><input id="ingredient-searcher" type="text" placeholder="entrer un ingredient"><img
+                            src="./assets/svg/chevron-down-solid.svg" alt="chevron down" class="closeList"></div>
+                    <ul class="results firstBtn">
+                    </ul>
+                </div>
+            </section>
+
+            <section class="toggleList">
+                <button id="appareils" class="toggleList">
+                    <span>Appareils</span>
+                    <img src="./assets/svg/chevron-down-solid.svg" alt="chevron down">
                 </button>
                 <div class="wrapper">
-                    <div><input id="appareil-searcher" type="text" placeholder="entrer un appareil"><img src="./assets/svg/chevron-down-solid.svg" alt="chevron down"></div>
+                    <div><input id="appareil-searcher" type="text" placeholder="entrer un appareil"><img
+                            src="./assets/svg/chevron-down-solid.svg" alt="chevron down" class="closeList"></div>
                     <ul class="results secondBtn">
                     </ul>
                 </div>
+            </section>
 
-            <button id="ustensils" class="activ">
-                <span>Ustensiles</span>
-                <img src="./assets/svg/chevron-down-solid.svg" alt="chevron down">
+            <section class="toggleList">
+                <button id="ustensils" class="toggleList">
+                    <span>Ustensiles</span>
+                    <img src="./assets/svg/chevron-down-solid.svg" alt="chevron down">
                 </button>
                 <div class="wrapper">
-                    <div><input id="ustensil-searcher" type="text" placeholder="entrer un ustensile"><img src="./assets/svg/chevron-down-solid.svg" alt="chevron down"></div>
+                    <div><input id="ustensil-searcher" type="text" placeholder="entrer un ustensile"><img
+                            src="./assets/svg/chevron-down-solid.svg" alt="chevron down" class="closeList"></div>
                     <ul class="results thirdBtn">
                     </ul>
                 </div>
+            </section>
         </nav>
 
         <div class="recipes-container"></div>
@@ -62,4 +73,5 @@
     </main>
     <script type="module" src="./scripts/app.js"></script>
 </body>
+
 </html>

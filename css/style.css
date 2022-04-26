@@ -47,6 +47,9 @@ main {
 /****************************************************/
 /****************** DROPDOWN BUTTONS*****************/
 /****************************************************/
+section{
+    z-index: 50;
+}
 .dropdown-menu {
     margin-top: 1rem;
     display: flex;
@@ -54,7 +57,7 @@ main {
     height: 5rem;
     z-index: 50;
 }
-.dropdown-menu button.activ{
+ button{
     min-width: 12rem;
     height: 4rem;
     margin: 0px;
@@ -72,9 +75,11 @@ main {
     align-items: center;
     border: none;
 }
-.dropdown-menu button {
+.activ button{
     display: none;
 }
+
+
 
 .wrapper input {
     color: white;
@@ -97,9 +102,7 @@ main {
     background-color: #ED6454;
 }
 
-.dropdown-menu input {
-    height: ;
-}
+
 
 #ingredient-searcher, #appareil-searcher, #ustensil-searcher {
     display: flex;
@@ -128,20 +131,15 @@ main {
     justify-content: space-between;
     align-items: center;
 }
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    font-family: 'Lato';
-    font-weight: 500;
-    color: white;
-    border-radius: 5px;
-    padding: 0rem;
-     height: 0px;
-    width: 0px;
-    overflow: hidden;
-    transition: height 0.3s ease-in-out;
-    z-index: 50;
+
+.toggleList.activ .wrapper {
+    height: 397px;
+    width: 670px;
+    padding: 1rem;
+    margin-right: 1.5rem;
 }
+
+
 
 #ingredients+.wrapper {
     background-color: #3282F7;
@@ -154,12 +152,7 @@ main {
 #ustensils+.wrapper {
     background-color: #ED6454;
 }
-.wrapper.activ {
-    height: 397px;
-    width: 670px;
-    padding: 1rem;
-    margin-right: 1.5rem;
-}
+
 
 ul {
     list-style: none;
@@ -178,7 +171,20 @@ ul {
     font-size: 18px;
     min-width: 180px;
 }
-
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Lato';
+    font-weight: 500;
+    color: white;
+    border-radius: 5px;
+    padding: 0rem;
+    height: 0px;
+   width: 0px;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+    z-index: 50;
+}
 /****************************************************/
 /********************* CARDS ************************/
 /****************************************************/

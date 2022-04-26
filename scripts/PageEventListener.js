@@ -6,79 +6,68 @@ export default class PageEventListener {
 	constructor(searchService) {
 		this.searchService;
 	}
-	clickListen() {
-		//DOM element
-		const body = document.querySelector('body');
 
-		body.addEventListener('click', (e) => {
-			//verifie si il est valide
-			this.openTagList(e.target);
-			//deplier la liste
-			this.unwrapList(e.target);
+	listen() {
+		this.tagListen()
+		this.inputListen()
+			
+	}
+
+	/*
+    *
+    Permet de savoir si on click sur un element ayant la classe .toggleList alors appeler openTagList()
+    *
+    */
+
+	tagListen() {
+		document.querySelector('body').addEventListener('click', (e) => {
+			const target = e.target;
+			// document.querySelector('.activ').classList.toggle('activ')
+			if (target.classList.contains('toggleList')) {
+				//verifie si il est valide
+				this.openTagList(target);
+			}
+
+			if (target.classList.contains('results')) {
+				//verifie si on est sur une liste deroulée
+				this.closeTagList(target);
+			}
+			if (target.classList.contains('closeList')) {
+				//verifie si on est sur le chevron
+				this.toggleChevron(target)
+			}
+           
+
 			//ajouter un tag
-			this.buildTag(e.target);
+			this.buildTag(target);
 			//fermer un tag
-			this.removeTag(e.target);
-		});
+			this.removeTag(target);
+              //permet de sortir des menus 
+			 if (!target.classList.contains('toggleList')) {
+                document.querySelector('.activ').classList.toggle('activ')
+            }
+		})};
+
+
+	openTagList(list) {
+		//cible le ul associé (element html enfant .wrapper du frere du bouton)
+		const listwrapper = document.getElementById(list.id);
+		//verifie si on a cliquer sur Ingredients
+		listwrapper.parentNode.classList.toggle('activ');
 	}
 
-	openTagList(element) {
-		//DOM elements
-		const ingredients = document.getElementById('ingredients');
-		const ingredientWrapper = document.querySelector('#ingredients+.wrapper');
-		const appareils = document.getElementById('appareils');
-		const appareilWrapper = document.querySelector('#appareils+.wrapper');
-		const ustensil = document.getElementById('ustensils');
-		const ustensilWrapper = document.querySelector('#ustensils+.wrapper');
-
-		// verifie si on a cliquer sur Ingredients
-		if (element === ingredients || element.parentNode === ingredients) {
-			ingredientWrapper.classList.toggle('activ');
-			ingredients.classList.remove('activ');
-		}
-
-		//verifie si on a cliqué sur Appareils
-		if (element === appareils || element.parentNode === appareils) {
-			appareilWrapper.classList.add('activ');
-			appareils.classList.remove('activ');
-		}
-
-		//verifie si on a cliqué sur Ustensils
-		if (element === ustensil || element.parentNode === ustensil) {
-			ustensilWrapper.classList.toggle('activ');
-			ustensil.classList.toggle('activ');
-		}
+	closeTagList(list) {
+		//cible le ul associé
+		list.parentNode.parentNode.classList.toggle('activ')
 	}
 
-	unwrapList(element) {
-		// verifie si on a cliquer sur le chevron pour fermer Ingredients
-		const closeIngredients = document.querySelector(
-			'#ingredients+.wrapper img'
-		);
-		const ingredients = document.getElementById('ingredients');
-		const ingredientWrapper = document.querySelector('#ingredients+.wrapper');
-		const appareils = document.getElementById('appareils');
-		const appareilWrapper = document.querySelector('#appareils+.wrapper');
-		const ustensil = document.getElementById('ustensils');
-		const ustensilWrapper = document.querySelector('#ustensils+.wrapper');
-
-		if (element === closeIngredients) {
-			ingredientWrapper.classList.toggle('activ');
-			ingredients.classList.toggle('activ');
-		}
-
-		if (element === document.querySelector('#appareils+.wrapper img')) {
-			appareilWrapper.classList.toggle('activ');
-			appareils.classList.toggle('activ');
-		}
-
-		if (element === document.querySelector('#ustensils+.wrapper img')) {
-			ustensilWrapper.classList.toggle('activ');
-			ustensil.classList.toggle('activ');
-		}
+	toggleChevron(chevron) {
+		//cible le parent
+		console.log(chevron);
 	}
 
 	removeTag(element) {
+		//retire le tag selectionné
 		if (element.classList.contains('remove-tag')) {
 			element.closest('.tag').remove();
 		}
@@ -137,9 +126,13 @@ export default class PageEventListener {
 		return userWord.value;
 	}
 
-	SelectedTagList() {
+	SelectedTagList(element) {
 
 		let selectedTags = document.querySelectorAll('.tag')
+		if (element.classList.contains('list-item')){
+			console.log('un tag');
+		}
+
 		console.log(selectedTags);
 
 	}
