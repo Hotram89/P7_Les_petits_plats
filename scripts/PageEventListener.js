@@ -34,18 +34,20 @@ export default class PageEventListener {
 			}
 			if (target.classList.contains('closeList')) {
 				//verifie si on est sur le chevron
-				this.toggleChevron(target)
+				this.toggleChevron(target);
 			}
            
-
-			//ajouter un tag
-			this.buildTag(target);
+			if (target.classList.contains('list-item')){
+                let listParent = target.closest('ul');
+				this.buildTag(target,listParent );
+			}
+			
 			//fermer un tag
 			this.removeTag(target);
-              //permet de sortir des menus 
-			 if (!target.classList.contains('toggleList')) {
-                document.querySelector('.activ').classList.toggle('activ')
-            }
+			//permet de sortir des menus 
+			if (!target.classList.contains('toggleList')) {
+				document.querySelector('.activ').classList.toggle('activ')
+			}
 		})};
 
 
@@ -58,7 +60,7 @@ export default class PageEventListener {
 
 	closeTagList(list) {
 		//cible le ul associé
-		list.parentNode.parentNode.classList.toggle('activ')
+		list.closest('section').classList.toggle('activ')
 	}
 
 	toggleChevron(chevron) {
@@ -73,48 +75,20 @@ export default class PageEventListener {
 		}
 	}
 
-	buildTag(element) {
+	buildTag(element, parent) {
 		//dom element
 		const tagContainer = document.getElementById('tag-container');
-		const ingredientsList = document.querySelector('.firstBtn');
-		const ustensilList = document.querySelector('.thirdBtn');
-		const appareilsList = document.querySelector('.secondBtn');
 
 		//construit le tag
-		if (element.classList.contains('list-item')) {
-			const ele = document.createElement('li');
-			const cross = document.createElement('div');
-			tagContainer.appendChild(ele);
+		tagContainer.innerHTML += 
+        `<li class='tag '>${element.innerHTML} 
+            <div class='cross'>
+                <img src='./assets/svg/close.svg' class='remove-tag' alt='close button'>
+            </div>
+        </li>`;
 
-			// colore les tag
-			if (
-				element.classList.contains('list-item') &&
-        element.parentNode === ustensilList
-			) {
-				ele.classList.add('redTag');
-			}
-			if (
-				element.classList.contains('list-item') &&
-        element.parentNode === appareilsList
-			) {
-				ele.classList.add('greenTag');
-			}
-
-			if (
-				element.classList.contains('list-item') &&
-        element.parentNode === ingredientsList
-			) {
-				ele.classList.add('blueTag');
-			}
-
-			ele.innerHTML = element.innerHTML;
-			ele.classList.add('tag');
-
-			cross.innerHTML = '<img src=\'./assets/svg/close.svg\' class=\'remove-tag\' alt=\'close button\'>';
-			cross.classList.add('cross');
-			ele.appendChild(cross);
-			element.remove();
-		}
+		element.remove();
+		
 	}
 
 	inputListen() {

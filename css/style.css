@@ -302,7 +302,7 @@ ul {
 #tag-container{
     display: flex;
     margin-top: 1rem;
-   
+    align-self: unset;
 }
 .cross img{
     display: flex;
