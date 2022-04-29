@@ -4,6 +4,14 @@ class SearchParam {
 	constructor() {
 		this.ustensiles = new Set();
 		this.appareil = new Set();
+		this.appareil = document.getElementsByClassName('tag-appliance');
+		this.ustensiles = document.querySelectorAll('.tag-ustensil');
+		this.ingredients = new Set();
+
+		//recupere le tableau des elements quand un tag est créé
+		document.querySelectorAll('.tag-ingredient').forEach(tag =>
+			this.ingredients.add(tag));
+    
 	}
 
 	refresh(result) {
@@ -18,6 +26,4 @@ class SearchParam {
 		//    return resultat
 	}
 
-	//fonction pour verifier si contient un ingredient
-	//hasIngredient(resultat)
 }

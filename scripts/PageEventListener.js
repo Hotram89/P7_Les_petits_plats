@@ -44,6 +44,7 @@ export default class PageEventListener {
 			//fermer un tag
 			this.removeTag(target);
 			//permet de sortir des menus 
+            this.searchService.search()
 			
 		});
 	}
