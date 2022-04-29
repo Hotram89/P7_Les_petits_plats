@@ -1,18 +1,15 @@
 export default 
 class CardBuilder {
-
 	//fonction pour rafraichir le dom
 	refresh(recipes) {
 		recipes.recipes.forEach((el) => {
 			this.buildCard(el);
 			this.buildIngredientsData(el);
 		});
-        
 	}
 
 	//fonction pour construire les cards de recettes
 	buildCard(recette) {
-
 		const gallery = document.querySelector('.recipes-container');
 		const htmlArticle = `
         <figure class='recipe-card'>
@@ -31,7 +28,6 @@ class CardBuilder {
         </figure>`;
 		const article = document.createElement('div');
 		article.innerHTML = htmlArticle;
-
 		gallery.appendChild(article);
 	}
 

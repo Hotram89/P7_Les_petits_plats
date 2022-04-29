@@ -4,13 +4,13 @@ import SearchParams from './SearchParam.js';
 
 export default class PageEventListener {
 	constructor(searchService) {
-		this.searchService;
+		this.searchService = searchService;
+    
 	}
 
 	listen() {
-		this.tagListen()
-		this.inputListen()
-			
+		this.tagListen();
+		this.inputListen();	
 	}
 
 	/*
@@ -22,15 +22,15 @@ export default class PageEventListener {
 	tagListen() {
 		document.querySelector('body').addEventListener('click', (e) => {
 			const target = e.target;
-			// document.querySelector('.activ').classList.toggle('activ')
-			if (target.classList.contains('toggleList')) {
+
+			if (target.classList.contains('buttonList')) {
 				//verifie si il est valide
-				this.openTagList(target);
+				this.openList(target);
 			}
 
 			if (target.classList.contains('results')) {
 				//verifie si on est sur une liste deroulée
-				this.closeTagList(target);
+				this.closeList(target);
 			}
 			if (target.classList.contains('closeList')) {
 				//verifie si on est sur le chevron
@@ -38,34 +38,38 @@ export default class PageEventListener {
 			}
            
 			if (target.classList.contains('list-item')){
-                let listParent = target.closest('ul');
-				this.buildTag(target,listParent );
+				this.buildTag(target);
 			}
 			
 			//fermer un tag
 			this.removeTag(target);
 			//permet de sortir des menus 
-			if (!target.classList.contains('toggleList')) {
-				document.querySelector('.activ').classList.toggle('activ')
-			}
-		})};
+			
+		});
+	}
 
 
-	openTagList(list) {
+	openList(list) {
+		//recupere toutes les listes
+		let openLists = document.querySelectorAll('.toggleList');
+		//ferme toutes les listes ouvertes avant d'ouvrir la bonne
+		openLists.forEach(el => {
+			el.classList.remove('activ');
+		} );
 		//cible le ul associé (element html enfant .wrapper du frere du bouton)
 		const listwrapper = document.getElementById(list.id);
 		//verifie si on a cliquer sur Ingredients
-		listwrapper.parentNode.classList.toggle('activ');
+		listwrapper.closest('section').classList.toggle('activ');
 	}
 
-	closeTagList(list) {
+	closeList(list) {
 		//cible le ul associé
-		list.closest('section').classList.toggle('activ')
+		list.closest('section').classList.toggle('activ');
 	}
 
 	toggleChevron(chevron) {
-		//cible le parent
-		console.log(chevron);
+		//cible le parent avec closest
+		chevron.closest('section').classList.toggle('activ');
 	}
 
 	removeTag(element) {
@@ -75,13 +79,15 @@ export default class PageEventListener {
 		}
 	}
 
-	buildTag(element, parent) {
+	buildTag(element) {
 		//dom element
 		const tagContainer = document.getElementById('tag-container');
+		const tagType = element.dataset.type
+        ;
 
 		//construit le tag
 		tagContainer.innerHTML += 
-        `<li class='tag '>${element.innerHTML} 
+        `<li class='tag ${tagType}'>${element.innerHTML} 
             <div class='cross'>
                 <img src='./assets/svg/close.svg' class='remove-tag' alt='close button'>
             </div>
@@ -98,16 +104,5 @@ export default class PageEventListener {
 			new SearchParams().refresh(userWord.value);
 		});
 		return userWord.value;
-	}
-
-	SelectedTagList(element) {
-
-		let selectedTags = document.querySelectorAll('.tag')
-		if (element.classList.contains('list-item')){
-			console.log('un tag');
-		}
-
-		console.log(selectedTags);
-
 	}
 }

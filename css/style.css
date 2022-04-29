@@ -288,15 +288,15 @@ ul {
     margin-right: 1rem;
     color: white;
 }
-.redTag {
+.tag-ustensil {
     background-color: #ED6454;
 }
 
-.greenTag {
+.tag-appliance{
     background-color: #68D9A4;
 }
 
-.blueTag {
+.tag-ingredient {
     background-color: #3282F7;
 }
 #tag-container{
