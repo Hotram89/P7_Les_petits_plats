@@ -1,80 +1,76 @@
-import SearchParams from './SearchParam.js';
-
 //class qui ecoute l'utilisateur sur la page
-
 export default class PageEventListener {
 	constructor(searchService) {
+		//permet de lancer la recherche quand c'est nécessaire
 		this.searchService = searchService;
-    
 	}
-
+	//initialise les fonctions suivantes
 	listen() {
 		this.tagListen();
 		this.inputListen();	
 	}
-
-	/*
-    *
-    Permet de savoir si on click sur un element ayant la classe .toggleList alors appeler openTagList()
-    *
-    */
-
+	/**
+     * 
+     * tagListen()  est le listener qui pilote les actions
+     * en fonction du clic
+     * 
+     */
 	tagListen() {
 		document.querySelector('body').addEventListener('click', (e) => {
 			const target = e.target;
-
+			// si on clique sur un des 3 boutons
 			if (target.classList.contains('buttonList')) {
-				//verifie si il est valide
+			// ouvre la liste concernée
 				this.openList(target);
 			}
-
+			// si on clique sur une liste déjà déroulée
 			if (target.classList.contains('results')) {
-				//verifie si on est sur une liste deroulée
+			//ferme cette liste
 				this.closeList(target);
 			}
+			// si on clique sur un chevron
 			if (target.classList.contains('closeList')) {
-				//verifie si on est sur le chevron
+			// ouvre ou ferme la liste
 				this.toggleChevron(target);
 			}
-           
+			// si on clique sur un element d'une liste
 			if (target.classList.contains('list-item')){
 				this.buildTag(target);
 			}
 			
-			//fermer un tag
+			// fermer un tag
 			this.removeTag(target);
-			//permet de sortir des menus 
-            this.searchService.search()
+			// relance la recherche 
+			this.searchService.search();
 			
 		});
 	}
 
-
 	openList(list) {
-		//recupere toutes les listes
+		// recupère toutes les listes
 		let openLists = document.querySelectorAll('.toggleList');
 		//ferme toutes les listes ouvertes avant d'ouvrir la bonne
 		openLists.forEach(el => {
 			el.classList.remove('activ');
 		} );
-		//cible le ul associé (element html enfant .wrapper du frere du bouton)
-		const listwrapper = document.getElementById(list.id);
-		//verifie si on a cliquer sur Ingredients
-		listwrapper.closest('section').classList.toggle('activ');
+		// cible le bouton
+		const listBtn = document.getElementById(list.id);
+		// ouvre la liste deroulante
+		listBtn.closest('section').classList.toggle('activ');
 	}
 
 	closeList(list) {
-		//cible le ul associé
+		// ferme la liste déroulante
 		list.closest('section').classList.toggle('activ');
 	}
 
 	toggleChevron(chevron) {
-		//cible le parent avec closest
+		// ouvre ou ferme au clic sur un chevron
 		chevron.closest('section').classList.toggle('activ');
 	}
 
 	removeTag(element) {
-		//retire le tag selectionné
+		// retire le tag selectionné en cliquant sur la croix
 		if (element.classList.contains('remove-tag')) {
 			element.closest('.tag').remove();
 		}
@@ -83,27 +79,28 @@ export default class PageEventListener {
 	buildTag(element) {
 		//dom element
 		const tagContainer = document.getElementById('tag-container');
-		const tagType = element.dataset.type
-        ;
+		const tagType = element.dataset.type;
 
 		//construit le tag
 		tagContainer.innerHTML += 
-        `<li class='tag ${tagType}'>${element.innerHTML} 
+        `<li class='tag ${tagType}' data-value='${element.innerHTML}'>${element.innerHTML} 
             <div class='cross'>
                 <img src='./assets/svg/close.svg' class='remove-tag' alt='close button'>
             </div>
         </li>`;
 
-		element.remove();
-		
+		element.remove();		
 	}
-
+	/**
+     * fonction qui écoute ce que l'user
+     * écrit dans la barre de recherche
+     * 
+     */
 	inputListen() {
-		let userWord = document.querySelector('.search-bar');
-
-		userWord.addEventListener('keyup', (e) => {
-			new SearchParams().refresh(userWord.value);
+		document.querySelector('.search-bar').addEventListener('keyup', (e) => {
+			if (e.target.value.length > 2) {
+				this.searchService.search();
+			}
 		});
-		return userWord.value;
 	}
 }

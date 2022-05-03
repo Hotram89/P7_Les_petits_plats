@@ -7,8 +7,11 @@ class CardBuilder {
 			this.buildIngredientsData(el);
 		});
 	}
-
-	//fonction pour construire les cards de recettes
+	/**
+     * 
+     * buildCard ajoute le code html d'une card 
+     * pour chaque recette trouvée
+     */
 	buildCard(recette) {
 		const gallery = document.querySelector('.recipes-container');
 		const htmlArticle = `
@@ -31,6 +34,13 @@ class CardBuilder {
 		gallery.appendChild(article);
 	}
 
+    /**
+     * 
+     * @buildIngredientsData crée la partie de la card 
+     * où on definit le type d'ingredients, son unité et sa quantité
+     * 
+     * @returns le html avec l'ingredient et ses informations 
+     */
 	buildIngredientsData(recette) {
 		let list =  [];
 		recette.ingredientsData.forEach((ingredient) => {
@@ -51,6 +61,4 @@ class CardBuilder {
 		list = list.join('');
 		return list;
 	}
-
-	
 }

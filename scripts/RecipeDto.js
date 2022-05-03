@@ -1,4 +1,9 @@
-
+/**
+ * class qui construit un objet
+ * cet objet structure et range
+ * les differentes données du provider
+ * 
+ */
 export default 
 class RecipeDto
 {

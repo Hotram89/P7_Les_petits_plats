@@ -1,29 +1,27 @@
-//classe qui retourne un resultat de la recherche, sous forme d'un objet
+/**
+ * 
+ * class qui retourne un objet 
+ * dans lequel on retrouve un tableau avec:
+ * les ustencils taggés
+ * les ingredients taggés
+ * les appareils taggés
+ * les caractères tapés au clavier
+ * 
+ */
 export default 
 class SearchParam {
 	constructor() {
-		this.ustensiles = new Set();
-		this.appareil = new Set();
-		this.appareil = document.getElementsByClassName('tag-appliance');
-		this.ustensiles = document.querySelectorAll('.tag-ustensil');
-		this.ingredients = new Set();
-
-		//recupere le tableau des elements quand un tag est créé
-		document.querySelectorAll('.tag-ingredient').forEach(tag =>
-			this.ingredients.add(tag));
-    
+		this.ustensiles = this.getSelectedTagsList('.tag-ustensil');
+		this.appareils = this.getSelectedTagsList('.tag-appliance');
+		this.ingredients = this.getSelectedTagsList('.tag-ingredient'); 
+		this.input = new Set();
 	}
-
-	refresh(result) {
-		this.isValid(result);
+	//recupere le tableau des elements quand un tag est créé
+	getSelectedTagsList(selector) {
+		let list = new Set();
+		document.querySelectorAll(selector).forEach((tag) => {
+			list.add(tag.dataset.value);
+		});
+		return list;
 	}
-
-	isValid(resultat) {
-		if (resultat.length > 3) {
-			console.log(resultat);
-			return resultat;
-		}
-		//    return resultat
-	}
-
 }
