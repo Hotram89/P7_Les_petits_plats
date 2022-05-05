@@ -31,6 +31,25 @@ class SearchService {
 	search() {
 
 		this.searchParams = new SearchParam();
+		this.recipesFiltered = new Set();
+		/**
+         * 
+         * pour chaque recette, on compare
+         * la recette de base avec les parametres de recherche
+         * si on trouve une correspondance,
+         * on l'ajoute au tableau des recettes filtrées
+         * 
+         */
+		this.recipes.forEach((recipe) => {
+			if (this.isValidRecipe(recipe, this.searchParams)) {
+				this.recipesFiltered.add(recipe)
+				console.log(this.recipesFiltered);
+
+			}
+		})
+
+
+		console.log(this.searchParams);
 		/**
          * Pour chacune des recettes dans recipes 
          * si searchParams.hasIngredient
@@ -41,6 +60,25 @@ class SearchService {
          */
 		this.domBuilder.refresh(new SearchResult(this.recipesFiltered));
 		this.listBuilder.refresh(new SearchResult(this.recipesFiltered));
+		console.log('ça passe');
+	}
+
+	isValidRecipe(recipe, searchParams) {
+		console.log(recipe);
+		console.log(searchParams);
+		let isValid = this.isValidRecipeForCriterias(searchParams.ingredients, recipe.ingredients)
+		console.log(isValid);
+		return isValid;
+	}
+
+	isValidRecipeForCriterias(criteria, recipe) {
+		if (criteria.length > 0) {
+			return this.contientTousLesFiltres(recipe, criteria)
+		}
+	}
+
+	contientTousLesFiltres(criterias, recipe) {
+		const array2Sorted = array2.slice().sort()
 	}
 }
 

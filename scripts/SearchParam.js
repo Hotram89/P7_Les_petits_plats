@@ -21,7 +21,9 @@ class SearchParam {
 		let list = new Set();
 		this.getSearchBarValue()
 		document.querySelectorAll(selector).forEach((tag) => {
-			list.add(tag.dataset.value);
+			let valueTag = tag.dataset.value;
+			valueTag = valueTag.toLowerCase();
+			list.add(valueTag);
 		});
         
 		return list;
@@ -29,13 +31,15 @@ class SearchParam {
 
 	getSearchBarValue() {
 		// recupere ce qui est tapé dans l'input
-		const valeur = document.querySelector('.search-bar').value;
+		let valeur = document.querySelector('.search-bar').value;
+		// mets tous en minuscules
+		valeur = valeur.toLowerCase();
 		// remplace les apostrophes par des espaces
-		const nouvelleValeur = valeur.replace('\'', ' ');
+		valeur = valeur.replace('\'', ' ');
 		// divise les mots et les ajoute en valeurs dans un Set
-		const tableau = new Set(nouvelleValeur.split(' '));
+		const tableau = new Set(valeur.split(' '));
 		// retire les articles indésirables des tableaux
-		let indesirables = ['un', 'une', 'de','le', 'la','les', 'au','à la' ,'l\'', 'à', 'aux', 'du', 'de la', 'des', 'l'];
+		let indesirables = ['un', 'une', 'de','le', 'la','les', 'au','à la' ,'l\'', 'à', 'a', 'aux', 'du', 'de la', 'des', 'l'];
 
 		tableau.forEach((mot) => {
 			indesirables.forEach((inde) => {
