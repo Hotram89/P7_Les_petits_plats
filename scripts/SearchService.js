@@ -30,7 +30,7 @@ class SearchService {
 
 	search() {
 
-		let searchParams = new SearchParam();
+		this.searchParams = new SearchParam();
 		/**
          * Pour chacune des recettes dans recipes 
          * si searchParams.hasIngredient
