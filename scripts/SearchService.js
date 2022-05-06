@@ -40,16 +40,16 @@ class SearchService {
          * on l'ajoute au tableau des recettes filtrées
          * 
          */
+
 		this.recipes.forEach((recipe) => {
+
 			if (this.isValidRecipe(recipe, this.searchParams)) {
 				this.recipesFiltered.add(recipe)
-				console.log(this.recipesFiltered);
 
-			}
+			}		
+
 		})
 
-
-		console.log(this.searchParams);
 		/**
          * Pour chacune des recettes dans recipes 
          * si searchParams.hasIngredient
@@ -60,25 +60,34 @@ class SearchService {
          */
 		this.domBuilder.refresh(new SearchResult(this.recipesFiltered));
 		this.listBuilder.refresh(new SearchResult(this.recipesFiltered));
-		console.log('ça passe');
 	}
-
+	//fonction qui verifie tous les parametres de recherche
 	isValidRecipe(recipe, searchParams) {
-		console.log(recipe);
-		console.log(searchParams);
+		
 		let isValid = this.isValidRecipeForCriterias(searchParams.ingredients, recipe.ingredients)
-		console.log(isValid);
+        && this.isValidRecipeForCriterias(searchParams.appareils, recipe.appliance )
+        && this.isValidRecipeForCriterias(searchParams.ustensiles, recipe.ustencils);
+       
 		return isValid;
 	}
-
+	// fonction qui verifie si il y a bien au moins un critere
 	isValidRecipeForCriterias(criteria, recipe) {
-		if (criteria.length > 0) {
-			return this.contientTousLesFiltres(recipe, criteria)
+		if (criteria.size > 0) {
+			return this.compareLesTableaux(criteria , recipe)
 		}
+		return true;
 	}
 
 	contientTousLesFiltres(criterias, recipe) {
-		const array2Sorted = array2.slice().sort()
+		const array2Sorted = array2.slice().sort();
+		array1.length === array2.length && array1.slice().sort().every(function(value, index) {
+			return value ===array2Sorted[index]
+		})
+	}
+
+	compareLesTableaux(criterias, recipe) {
+		console.log(recipe);
+		console.log(criterias);
 	}
 }
 
