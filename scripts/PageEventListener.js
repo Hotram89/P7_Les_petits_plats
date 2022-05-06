@@ -36,13 +36,18 @@ export default class PageEventListener {
 			// si on clique sur un element d'une liste
 			if (target.classList.contains('list-item')){
 				this.buildTag(target);
+				// relance la recherche 
+				this.searchService.search();
 			}
 			
 			// fermer un tag
-			this.removeTag(target);
-			// relance la recherche 
-			this.searchService.search();
+			if (target.classList.contains('remove-tag')){
+				this.removeTag(target);
+				// relance la recherche 
+				this.searchService.search();
+			}
 			
+					
 		});
 	}
 

@@ -16,21 +16,15 @@ class RecipeDto
 		this.ingredients = new Set();
 		this.ingredientsData = new Set();
 		recipe.ingredients.forEach((ingredient) => {
-			this.ingredients.add(ingredient.ingredient);
+			this.ingredients.add(ingredient.ingredient.toLowerCase());
 			this.ingredientsData.add(ingredient);
 		});
 		this.description = recipe.description;
-		this.appliance = recipe.appliance;
-		//this.ustensils = recipe.ustensils
+		this.appliance = new Set();
+		this.appliance.add(recipe.appliance.toLowerCase());
 		this.ustensils = new Set();
 		recipe.ustensils.forEach((ustensil) => {
 			this.ustensils.add(ustensil);
 		});
-
-	}
-
-	//permet de savoir si il contient l'ingredient
-	hasIngredient(ingredient) {
-		return this.ingredients.include(ingredient);
 	}
 }

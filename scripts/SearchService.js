@@ -40,54 +40,37 @@ class SearchService {
          * on l'ajoute au tableau des recettes filtrées
          * 
          */
-
 		this.recipes.forEach((recipe) => {
-
-			if (this.isValidRecipe(recipe, this.searchParams)) {
-				this.recipesFiltered.add(recipe)
-
+			if (this.isValidRecipe(recipe)) {
+				this.recipesFiltered.add(recipe);
 			}		
-
-		})
+		});
 
 		/**
-         * Pour chacune des recettes dans recipes 
-         * si searchParams.hasIngredient
-         * verifier si cette recipe contient les bons ingredients
-         * alors add dans un tableau vide 
-         * 
-         * 
+         * On rafrachit le DOM
          */
-		this.domBuilder.refresh(new SearchResult(this.recipesFiltered));
-		this.listBuilder.refresh(new SearchResult(this.recipesFiltered));
+		let searchResult = new SearchResult(this.recipesFiltered);
+		this.domBuilder.refresh(searchResult);
+		this.listBuilder.refresh(searchResult);
 	}
 	//fonction qui verifie tous les parametres de recherche
-	isValidRecipe(recipe, searchParams) {
-		
-		let isValid = this.isValidRecipeForCriterias(searchParams.ingredients, recipe.ingredients)
-        && this.isValidRecipeForCriterias(searchParams.appareils, recipe.appliance )
-        && this.isValidRecipeForCriterias(searchParams.ustensiles, recipe.ustencils);
-       
-		return isValid;
+	isValidRecipe(recipe) {
+		return this.compareLesTableaux(this.searchParams.ustensiles, recipe.ustensils, recipe.id)
+        && this.compareLesTableaux(this.searchParams.ingredients, recipe.ingredients, recipe.id)
+        && this.compareLesTableaux(this.searchParams.appareils, recipe.appliance, recipe.id)
 	}
-	// fonction qui verifie si il y a bien au moins un critere
-	isValidRecipeForCriterias(criteria, recipe) {
-		if (criteria.size > 0) {
-			return this.compareLesTableaux(criteria , recipe)
+
+	compareLesTableaux(criterias, recipeData) {
+		if (criterias.size == 0) {
+			return true;
 		}
-		return true;
-	}
 
-	contientTousLesFiltres(criterias, recipe) {
-		const array2Sorted = array2.slice().sort();
-		array1.length === array2.length && array1.slice().sort().every(function(value, index) {
-			return value ===array2Sorted[index]
-		})
-	}
-
-	compareLesTableaux(criterias, recipe) {
-		console.log(recipe);
-		console.log(criterias);
+		let isValid = [...criterias].every((criteria) => {
+			return recipeData.has(criteria);
+		});
+		 return isValid;
+		// si un ingredient du tableau criterias existe dans recipe
+		// alors renvoie true
 	}
 }
 

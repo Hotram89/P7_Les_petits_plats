@@ -1,8 +1,11 @@
 export default 
 class CardBuilder {
 	//fonction pour rafraichir le dom
-	refresh(recipes) {
-		recipes.recipes.forEach((el) => {
+	refresh(searchResult) {
+		//On ecrase l'ancien resultat
+		document.querySelector('.recipes-container').innerHTML = '';
+
+		searchResult.recipes.forEach((el) => {
 			this.buildCard(el);
 			this.buildIngredientsData(el);
 		});
@@ -34,7 +37,7 @@ class CardBuilder {
 		gallery.appendChild(article);
 	}
 
-    /**
+	/**
      * 
      * @buildIngredientsData crée la partie de la card 
      * où on definit le type d'ingredients, son unité et sa quantité
