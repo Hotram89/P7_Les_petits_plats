@@ -19,7 +19,7 @@ class CardBuilder {
 		const gallery = document.querySelector('.recipes-container');
 		const htmlArticle = `
         <figure class='recipe-card'>
-        <img src='http://placekitten.com/g/200/300' class='img-placeholder' alt=''>
+        <img src='./assets/photos/image_${recette.id}.jpg' class='img-placeholder' alt=''>
         <figcaption class='card-description'>
             <div class='card-header'>
                 <h2>${recette.name}</h2> 
