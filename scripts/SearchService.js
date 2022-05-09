@@ -58,6 +58,7 @@ class SearchService {
 		return this.compareLesTableaux(this.searchParams.ustensiles, recipe.ustensils, recipe.id)
         && this.compareLesTableaux(this.searchParams.ingredients, recipe.ingredients, recipe.id)
         && this.compareLesTableaux(this.searchParams.appareils, recipe.appliance, recipe.id)
+        && this.compareLesTableaux(this.searchParams.input, recipe.ingredients)
 	}
 
 	compareLesTableaux(criterias, recipeData) {

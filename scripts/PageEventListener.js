@@ -85,10 +85,12 @@ export default class PageEventListener {
 		//dom element
 		const tagContainer = document.getElementById('tag-container');
 		const tagType = element.dataset.type;
+		// ajoute une majuscule a la premiere lettre
+		let valeurHtml = element.innerHTML.charAt(0).toUpperCase() + element.innerHTML.slice(1);
 
 		//construit le tag
 		tagContainer.innerHTML += 
-        `<li class='tag ${tagType}' data-value='${element.innerHTML}'>${element.innerHTML} 
+        `<li class='tag ${tagType}' data-value='${element.innerHTML}'>${valeurHtml} 
             <div class='cross'>
                 <img src='./assets/svg/close.svg' class='remove-tag' alt='close button'>
             </div>

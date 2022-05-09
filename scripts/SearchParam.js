@@ -29,14 +29,21 @@ export default class SearchParam {
 	}
 
 	getSearchBarValue() {
+        
 		// recupere ce qui est tapé dans l'input
 		let valeur = document.querySelector('.search-bar').value;
+		if (valeur.length < 2) {
+			return new Set();
+		}
 		// mets tous en minuscules
 		valeur = valeur.toLowerCase();
 		// remplace les apostrophes par des espaces
 		valeur = valeur.replace('\'', ' ');
+		//retirer les espaces blancs
+		valeur = valeur.trim()
 		// divise les mots et les ajoute en valeurs dans un Set
 		const tableau = new Set(valeur.split(' '));
+
 		// retire les articles indésirables des tableaux
 		let indesirables = [
 			'un',
