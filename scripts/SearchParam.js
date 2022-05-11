@@ -14,7 +14,13 @@ export default class SearchParam {
 		this.appareils = this.getSelectedTagsList('.tag-appliance');
 		this.ingredients = this.getSelectedTagsList('.tag-ingredient');
 		this.input = this.getSearchBarValue();
+
+		this.inputIngredient = this.getTagsInput('ingredient-searcher');
+		this.inputAppareil = this.getTagsInput('appareil-searcher');
+		this.inputUstensil = this.getTagsInput('ustensil-searcher');
 	}
+
+	
 	//recupere le tableau des elements quand un tag est créé
 	getSelectedTagsList(selector) {
 		let list = new Set();
@@ -71,5 +77,22 @@ export default class SearchParam {
 			}
 		});
 		return tableau;
+	}
+
+	getTagsInput(id) {
+		// recupere ce qui est tapé dans l'input
+		let valeur = document.getElementById(id).value
+		return valeur
+	}
+
+	getTagsList() {
+		this.ingTags = new Set();
+		let dom = document.querySelectorAll('.list-item');
+		dom.forEach((item) => {
+			let mot = item.innerHTML;
+			this.ingTags.add(mot); 
+		});
+		return this.ingTags;
+
 	}
 }

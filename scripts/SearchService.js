@@ -43,7 +43,7 @@ class SearchService {
 		this.recipes.forEach((recipe) => {
 			if (this.isValidRecipe(recipe)) {
 				this.recipesFiltered.add(recipe);
-			}		
+			}
 		});
 
 		/**

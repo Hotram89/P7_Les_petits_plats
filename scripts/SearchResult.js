@@ -1,3 +1,5 @@
+import SearchParam from "./SearchParam.js";
+
 //classe qui retourne un resultat de recherche sous forme d'objet
 export default class SearchResult {
 	constructor(recipes) {
@@ -5,13 +7,12 @@ export default class SearchResult {
 		this.ustensiles = new Set();
 		this.appareils = new Set();
 		this.recipes = recipes;
-    
-		recipes.forEach((recipe) => {
 
+		recipes.forEach((recipe) => {
 			recipe.appliance.forEach((appareil) => {
 				this.appareils.add(appareil);
 			});
-			
+
 			recipe.ustensils.forEach((ustensil) => {
 				this.ustensiles.add(ustensil);
 			});
@@ -20,5 +21,27 @@ export default class SearchResult {
 				this.ingredient.add(ingredient);
 			});
 		});
+		//va chercher le texte tapé dans l'input
+		this.searchParams = new SearchParam();
+		this.inputListSearch(this.searchParams.inputIngredient, this.ingredient);
+		this.inputListSearch(this.searchParams.inputAppareil, this.appareils);
 	}
+
+	inputListSearch(inputText, ) {
+		//si il y des lettres tapées
+		if (inputText.length > 2) {
+			let newList = new Set();
+			this.ingredient.forEach((element) => {
+				if (element.includes(inputText)) {
+					newList.add(element);
+				}
+				this.ingredient = newList;
+			});
+		}
+	}
+
+	inputAppareils() {
+
+	}
+
 }
