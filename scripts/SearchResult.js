@@ -1,4 +1,4 @@
-import SearchParam from "./SearchParam.js";
+import SearchParam from './SearchParam.js';
 
 //classe qui retourne un resultat de recherche sous forme d'objet
 export default class SearchResult {
@@ -23,11 +23,12 @@ export default class SearchResult {
 		});
 		//va chercher le texte tapé dans l'input
 		this.searchParams = new SearchParam();
-		this.inputListSearch(this.searchParams.inputIngredient, this.ingredient);
-		this.inputListSearch(this.searchParams.inputAppareil, this.appareils);
+		this.inputIngredients(this.searchParams.inputIngredient);
+		this.inputAppareils(this.searchParams.inputAppareil);
+		this.inputUstencils(this.searchParams.inputUstensil);
 	}
 
-	inputListSearch(inputText, ) {
+	inputIngredients(inputText) {
 		//si il y des lettres tapées
 		if (inputText.length > 2) {
 			let newList = new Set();
@@ -40,8 +41,29 @@ export default class SearchResult {
 		}
 	}
 
-	inputAppareils() {
-
+	inputAppareils(inputText) {
+		//si il y des lettres tapées
+		if (inputText.length > 2) {
+			let newList = new Set();
+			this.appareils.forEach((element) => {
+				if (element.includes(inputText)) {
+					newList.add(element);
+				}
+				this.appareils = newList;
+			});
+		}
 	}
 
+	inputUstencils(inputText){
+		//si il y des lettres tapées
+		if (inputText.length > 2) {
+			let newList = new Set();
+			this.ustensiles.forEach((element) => {
+				if (element.includes(inputText)) {
+					newList.add(element);
+				}
+				this.ustensiles = newList;
+			});
+		}
+	}
 }
