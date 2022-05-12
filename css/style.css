@@ -122,6 +122,10 @@ section{
 
 .list-item {
     cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 1rem;
 }
 .wrapper img {
     width: 1.2rem;
