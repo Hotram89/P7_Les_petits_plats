@@ -1,5 +1,6 @@
 import CardBuilder from './CardBuilder.js';
 import ListBuilder from './ListBuilder.js';
+import NoResult from './NoResult.js';
 import SearchParam from './SearchParam.js';
 import SearchResult from './SearchResult.js';
 
@@ -42,8 +43,11 @@ export default class SearchService {
 			if (this.isValidRecipe(recipe)) {
 				this.recipesFiltered.add(recipe);
 			}
+            
 		});
-
+		if(this.recipesFiltered.size == 0){
+			new NoResult().builder()
+		}
 		/**
      * On rafrachit le DOM
      */

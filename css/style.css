@@ -323,3 +323,16 @@ ul {
  cursor: pointer;
 }
 
+/****************************************************/
+/******************** NORESULT **********************/
+/****************************************************/
+.nothing-container {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.nothing-container b {
+    background-color: #ED6454;
+    color: white;
+    font-weight: 400;
+}
