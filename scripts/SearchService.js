@@ -14,7 +14,6 @@ export default class SearchService {
    * Contient les données des recettes non filtrées
    */
 	recipes;
-
 	/**
    *
    * Contient les données de recettes deja filtrées en fonction de la recherche courante
