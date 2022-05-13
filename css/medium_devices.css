@@ -12,3 +12,7 @@
 button {
     width: 100%;
 }
+
+ul {
+    grid-template-columns: 1fr 1fr;
+}

@@ -1,3 +1,6 @@
 main {
     margin: 0 1rem;
 }
+ul {
+    grid-template-columns: 1fr ;
+}
