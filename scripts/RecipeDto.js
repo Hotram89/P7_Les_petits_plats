@@ -24,7 +24,7 @@ class RecipeDto
 		this.appliance.add(recipe.appliance.toLowerCase());
 		this.ustensils = new Set();
 		recipe.ustensils.forEach((ustensil) => {
-			this.ustensils.add(ustensil);
+			this.ustensils.add(ustensil.toLowerCase());
 		});
 	}
 }

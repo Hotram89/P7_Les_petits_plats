@@ -20,31 +20,43 @@ export default class PageEventListener {
    *
    */
 	tagListen() {
-		document.querySelector("body").addEventListener("click", (e) => {
+		document.querySelector('body').addEventListener('click', (e) => {
 			const target = e.target;
 			// si on clique sur un des 3 boutons
-			if (target.classList.contains("buttonList")) {
+			if (target.classList.contains('buttonList')) {
 				// ouvre la liste concernée
 				this.openList(target);
 			}
+			//si on clique sur un span Ingredient / Ustensiles / Appareils
+			if(target.outerHTML.includes('span')) {
+				// recupère toutes les listes
+				let openLists = document.querySelectorAll('.toggleList');
+				//ferme toutes les listes ouvertes avant d'ouvrir la bonne
+				openLists.forEach((el) => {
+					el.classList.remove('activ');
+				});
+
+				target.closest('div').classList.toggle('activ');
+			}
 			// si on clique sur une liste déjà déroulée
-			if (target.classList.contains("results")) {
+			if (target.classList.contains('results')) {
 				//ferme cette liste
 				this.closeList(target);
 			}
 			// si on clique sur un chevron
-			if (target.classList.contains("closeList")) {
+			if (target.classList.contains('closeList')) {
 				// ouvre ou ferme la liste
 				this.toggleChevron(target);
 			}
 			// si on clique sur un element d'une liste
-			if (target.classList.contains("list-item")) {
+			if (target.classList.contains('list-item')) {
 				this.buildTag(target);
+				this.removeTag(target);
 				// relance la recherche
 				this.searchService.search();
 			}
 			// fermer un tag
-			if (target.classList.contains("remove-tag")) {
+			if (target.classList.contains('remove-tag')) {
 				this.removeTag(target);
 				// relance la recherche
 				this.searchService.search();
@@ -54,37 +66,38 @@ export default class PageEventListener {
 
 	openList(list) {
 		// recupère toutes les listes
-		let openLists = document.querySelectorAll(".toggleList");
+		let openLists = document.querySelectorAll('.toggleList');
 		//ferme toutes les listes ouvertes avant d'ouvrir la bonne
 		openLists.forEach((el) => {
-			el.classList.remove("activ");
+			el.classList.remove('activ');
 		});
 		// cible le bouton
 		const listBtn = document.getElementById(list.id);
 		// ouvre la liste deroulante
-		listBtn.closest("section").classList.toggle("activ");
+		listBtn.closest('div').classList.toggle('activ');
 	}
 
 	closeList(list) {
 		// ferme la liste déroulante
-		list.closest("section").classList.toggle("activ");
+		list.closest('div').classList.toggle('activ');
 	}
 
 	toggleChevron(chevron) {
+		//ferme toutes les listes ouvertes avant d'ouvrir la bonne
 		// ouvre ou ferme au clic sur un chevron
-		chevron.closest("section").classList.toggle("activ");
+		chevron.closest('.toggleList').classList.toggle('activ');
 	}
 
 	removeTag(element) {
 		// retire le tag selectionné en cliquant sur la croix
-		if (element.classList.contains("remove-tag")) {
-			element.closest(".tag").remove();
+		if (element.classList.contains('remove-tag')) {
+			element.closest('.tag').remove();
 		}
 	}
 
 	buildTag(element) {
 		//dom element
-		const tagContainer = document.getElementById("tag-container");
+		const tagContainer = document.getElementById('tag-container');
 		const tagType = element.dataset.type;
 		// ajoute une majuscule a la premiere lettre
 		let valeurHtml =
@@ -107,8 +120,8 @@ export default class PageEventListener {
    *
    */
 	inputListen(selector) {
-		document.querySelector(selector).addEventListener("keyup", (e) => {
-				this.searchService.search();
+		document.querySelector(selector).addEventListener('keyup', () => {
+			this.searchService.search();
 			
 		});
 	}

@@ -1,9 +1,10 @@
 export default class NoResult {
-	builder() {
+	refresh(searchResult) {
 		//dom element
 		let container = document.querySelector(".nothing-container");
-        container.innerHTML =''
-		container.innerHTML =
-      'Aucune recette ne correspond à votre critère... vous pouvez chercher "<b>tarte aux pommes</b>", "<b>poisson</b>", etc.';
+		container.innerHTML = searchResult.hasIngredients()
+			? ''
+			: 'Aucune recette ne correspond à votre critère...'
+                + ' vous pouvez chercher "<b>tarte aux pommes</b>", "<b>poisson</b>", etc.';      
 	}
 }

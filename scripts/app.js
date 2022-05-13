@@ -2,6 +2,7 @@ import RecipeProvider from './RecipeProvider.js';
 import SearchService from './SearchService.js';
 import PageEventListener from './PageEventListener.js';
 
+
 // collection set d'objets RecipeDto
 const RecipesDto = new RecipeProvider().findAll();
 
@@ -26,3 +27,4 @@ const listener = new PageEventListener(searchService);
 
 //On déclenche les évenements (clique, tag, input)
 listener.listen();
+

@@ -3,6 +3,8 @@ import ListBuilder from './ListBuilder.js';
 import NoResult from './NoResult.js';
 import SearchParam from './SearchParam.js';
 import SearchResult from './SearchResult.js';
+import { escapeArray } from './utils.js';
+
 
 /***
  *
@@ -23,6 +25,7 @@ export default class SearchService {
 	constructor(collectionDto) {
 		this.domBuilder = new CardBuilder();
 		this.listBuilder = new ListBuilder();
+		this.noResultBuilder = new NoResult();
 		this.recipes = collectionDto; // ne change pas, a les 50 recettes
 		this.recipesFiltered = collectionDto; // change en fonction des recherches effectuées
 	}
@@ -41,18 +44,16 @@ export default class SearchService {
 		this.recipes.forEach((recipe) => {
 			if (this.isValidRecipe(recipe)) {
 				this.recipesFiltered.add(recipe);
-			}
-            
+			} 
 		});
-		if(this.recipesFiltered.size == 0){
-			new NoResult().builder()
-		}
+		
 		/**
      * On rafrachit le DOM
      */
-		let searchResult = new SearchResult(this.recipesFiltered);
-		this.domBuilder.refresh(searchResult);
-		this.listBuilder.refresh(searchResult);
+		this.searchResult = new SearchResult(this.recipesFiltered);
+		this.domBuilder.refresh(this.searchResult);
+		this.listBuilder.refresh(this.searchResult, this.searchParams);
+		this.noResultBuilder.refresh(this.searchResult);
 	}
 	//fonction qui verifie tous les parametres de recherche fusionnés
 	isValidRecipe(recipe) {
@@ -74,8 +75,10 @@ export default class SearchService {
 	//compare les tableaux des criteres de tag avec le tableau correcpond de la recette
 	compareLesTableaux(criterias, recipeData) {
 		if (criterias.size == 0) {
+            
 			return true;
 		}
+        recipeData = escapeArray(recipeData);
 
 		let isValid = [...criterias].every((criteria) => {
 			return recipeData.has(criteria);

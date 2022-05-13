@@ -23,47 +23,29 @@ export default class SearchResult {
 		});
 		//va chercher le texte tapé dans l'input
 		this.searchParams = new SearchParam();
-		this.inputIngredients(this.searchParams.inputIngredient);
-		this.inputAppareils(this.searchParams.inputAppareil);
-		this.inputUstencils(this.searchParams.inputUstensil);
+		this.ingredient = this.filterInput(this.searchParams.inputIngredient, this.ingredient);
+		this.appareils = this.filterInput(this.searchParams.inputAppareil, this.appareils);
+		this.ustensiles = this.filterInput(this.searchParams.inputUstensil, this.ustensiles);
 	}
 
-	inputIngredients(inputText) {
-		//si il y des lettres tapées
-		if (inputText.length > 2) {
-			let newList = new Set();
-			this.ingredient.forEach((element) => {
-				if (element.includes(inputText)) {
-					newList.add(element);
-				}
-				this.ingredient = newList;
-			});
+	hasIngredients() {
+		return this.recipes.size > 0;
+	}
+    
+	filterInput(params, data) {
+		if (params.length <= 2) {
+			return data;
 		}
+
+		let newData = new Set();
+		data.forEach((element) => {
+			if (element.includes(params)) {
+				newData.add(element);
+			}
+		});
+
+		return newData;
 	}
 
-	inputAppareils(inputText) {
-		//si il y des lettres tapées
-		if (inputText.length > 2) {
-			let newList = new Set();
-			this.appareils.forEach((element) => {
-				if (element.includes(inputText)) {
-					newList.add(element);
-				}
-				this.appareils = newList;
-			});
-		}
-	}
-
-	inputUstencils(inputText){
-		//si il y des lettres tapées
-		if (inputText.length > 2) {
-			let newList = new Set();
-			this.ustensiles.forEach((element) => {
-				if (element.includes(inputText)) {
-					newList.add(element);
-				}
-				this.ustensiles = newList;
-			});
-		}
-	}
+    
 }
