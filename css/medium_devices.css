@@ -4,6 +4,9 @@
     min-height: 14rem;
     }
 
+.recipes-container {
+    justify-content: center;
+}
 .toggleList {
     display: flex;
     justify-content: center;

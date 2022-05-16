@@ -33,7 +33,6 @@ main {
 }
 
 .topnav {
-    z-index: 0;
     position: relative;
     padding-right: 2rem;
     background-color:#E7E7E7;
@@ -47,28 +46,37 @@ main {
     z-index: 5;
     width: 32px;
 }
+/****************************************************/
+/************ TOGGLE DE LA CLASSE ACTIV *************/
+/****************************************************/
+.activ button{
+    display: none;
+}
 
+.toggleList.activ .wrapper {
+    display: flex;
+    width: 670px;
+    padding: 1rem;
+    margin-right: 1.5rem;
+}
 /****************************************************/
 /****************** DROPDOWN BUTTONS*****************/
 /****************************************************/
-.toggleList{
-    z-index: 50;
-}
 .dropdown-menu {
     margin-top: 1rem;
     display: flex;
     flex-direction: row;
     height: 5rem;
-    z-index: 50;
 }
- button{
+
+button{
+    display: flex;
     min-width: 12rem;
     height: 4rem;
     margin: 0px;
     padding: 0px;
     background-color: yellow;
     margin-right: 1.5rem;
-    display: flex;
     padding: 1rem;
     border-radius: 5px;
     font-size: 18px;
@@ -79,8 +87,16 @@ main {
     align-items: center;
     border: none;
 }
-.activ button{
+.wrapper {
     display: none;
+    flex-direction: column;
+    font-family: 'Lato';
+    font-weight: 500;
+    color: white;
+    border-radius: 5px;
+    transition: height 0.3s ease-in-out;
+    position: relative;
+    z-index: 100;
 }
 
 
@@ -88,7 +104,6 @@ main {
 .wrapper input {
     color: white;
     border: none;
-
 }
 .dropdown-menu input::placeholder {
     color: white;
@@ -105,8 +120,6 @@ main {
 #ustensils, #ustensil-searcher {
     background-color: #ED6454;
 }
-
-
 
 #ingredient-searcher, #appareil-searcher, #ustensil-searcher {
     display: flex;
@@ -127,6 +140,7 @@ main {
     white-space: nowrap;
     padding-right: 1rem;
 }
+
 .wrapper img {
     width: 1.2rem;
     filter: invert(93%) sepia(100%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(106%);
@@ -140,12 +154,7 @@ main {
     align-items: center;
 }
 
-.toggleList.activ .wrapper {
-    height: 397px;
-    width: 670px;
-    padding: 1rem;
-    margin-right: 1.5rem;
-}
+
 
 
 
@@ -179,32 +188,19 @@ ul {
     font-size: 18px;
     min-width: 180px;
 }
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    font-family: 'Lato';
-    font-weight: 500;
-    color: white;
-    border-radius: 5px;
-    padding: 0rem;
-    height: 0px;
-   width: 0px;
-    overflow: hidden;
-    transition: height 0.3s ease-in-out;
-    z-index: 50;
-}
+
 /****************************************************/
 /********************* CARDS ************************/
 /****************************************************/
 
 .recipes-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 2rem;
     margin: 2rem 0;  
-    z-index: 0;
+    z-index: -1;
 }
 .recipe-card {
     width: 380px;
@@ -297,6 +293,7 @@ figure {
     border-radius: 5px;
     margin-right: 1rem;
     color: white;
+    margin-bottom: 0.5rem;
 }
 .tag-ustensil {
     background-color: #ED6454;
@@ -313,6 +310,7 @@ figure {
     display: flex;
     margin-top: 1rem;
     align-self: unset;
+    flex-wrap: wrap;
 }
 .cross img{
     display: flex;
