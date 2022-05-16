@@ -41,11 +41,12 @@ export default class SearchService {
      * on l'ajoute au tableau des recettes filtrées
      *
      */
-		this.recipes.forEach((recipe) => {
+		for (let i = 0; i < this.recipes.size ; i++) {
+			let recipe = [...this.recipes][i];
 			if (this.isValidRecipe(recipe)) {
 				this.recipesFiltered.add(recipe);
-			} 
-		});
+			}   
+		};
 		
 		/**
      * On rafrachit le DOM
