@@ -55,7 +55,6 @@ main {
 
 .toggleList.activ .wrapper {
     display: flex;
-    width: 670px;
     padding: 1rem;
     margin-right: 1.5rem;
 }
@@ -67,6 +66,7 @@ main {
     display: flex;
     flex-direction: row;
     height: 5rem;
+    position: relative;
 }
 
 button{
@@ -99,8 +99,6 @@ button{
     z-index: 100;
 }
 
-
-
 .wrapper input {
     color: white;
     border: none;
@@ -128,9 +126,9 @@ button{
 }
 
 #ingredients img, #appareils img, #ustensils img {
-    width: 1rem;
+    width: 1.2rem;
     filter: invert(93%) sepia(100%) saturate(0%) hue-rotate(248deg) brightness(106%) contrast(106%);
-   
+    cursor: pointer;
 }
 
 .list-item {
@@ -153,10 +151,6 @@ button{
     justify-content: space-between;
     align-items: center;
 }
-
-
-
-
 
 #ingredients+.wrapper {
     background-color: #3282F7;
