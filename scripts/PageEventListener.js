@@ -45,8 +45,6 @@ export default class PageEventListener {
 			}
 			// si on clique sur un chevron
 			if (target.classList.contains('closeList')) {
-     
-                
 				// ouvre ou ferme la liste
 				this.toggleChevron(target);
 			}
@@ -87,7 +85,7 @@ export default class PageEventListener {
 	toggleChevron(chevron) {
 		//ferme toutes les listes ouvertes avant d'ouvrir la bonne
 		
-            chevron.closest('.toggleList').classList.toggle('activ')
+		chevron.closest('.toggleList').classList.toggle('activ');
 		// ouvre ou ferme au clic sur un chevron
 		// recupère toutes les listes
 		//ferme toutes les listes ouvertes avant d'ouvrir la bonne
