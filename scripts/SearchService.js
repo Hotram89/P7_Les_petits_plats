@@ -46,7 +46,7 @@ export default class SearchService {
 			if (this.isValidRecipe(recipe)) {
 				this.recipesFiltered.add(recipe);
 			}   
-		};
+		}
 		
 		/**
      * On rafrachit le DOM
@@ -79,7 +79,7 @@ export default class SearchService {
             
 			return true;
 		}
-        recipeData = escapeArray(recipeData);
+		recipeData = escapeArray(recipeData);
 
 		let isValid = [...criterias].every((criteria) => {
 			return recipeData.has(criteria);

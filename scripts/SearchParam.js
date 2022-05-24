@@ -23,7 +23,6 @@ export default class SearchParam {
 	//recupere le tableau des elements quand un tag est créé
 	getSelectedTagsList(selector) {
 		let list = new Set();
-//		this.getSearchBarValue();
 		document.querySelectorAll(selector).forEach((tag) => {
 			let valueTag = tag.dataset.value;
 			valueTag = valueTag.toLowerCase();
